@@ -89,6 +89,7 @@ function transition(name) {
 		$("#view-amount-donation").fadeIn(1000);
 		return amountType();
 	}
+}
 
 
 function start() {
@@ -157,13 +158,13 @@ function fundsType() {
 		.start();
 }
 
-//function amountType() {
-	//force.gravity(0)
-		//.friction(0.8)
-		//.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		//.on("tick", amounts)
-		//.start();
-//}
+function amountType() {
+	force.gravity(0)
+		.friction(0.8)
+		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
+		.on("tick", amounts)
+		.start();
+}
 
 function parties(e) {
 	node.each(moveToParties(e.alpha));
@@ -187,13 +188,13 @@ function types(e) {
 			.attr("cy", function(d) {return d.y; });
 }
 
-//function amounts(e) {
-	//node.each(moveToAmounts(e.alpha));
+function amounts(e) {
+	node.each(moveToAmounts(e.alpha));
 
 
-		//node.attr("cx", function(d) { return d.x; })
-			//.attr("cy", function(d) {return d.y; });
-//}
+		node.attr("cx", function(d) { return d.x; })
+			.attr("cy", function(d) {return d.y; });
+}
 
 function all(e) {
 	node.each(moveToCentre(e.alpha))
@@ -272,38 +273,30 @@ function moveToFunds(alpha) {
 	};
 }
 
-//function moveToAmounts(alpha){
-	//return function(d){
-		  //var  centreX;
-		  //var  centreY;
-		//if (d.value<=25000){
-			//centreX=200;
-			//centreY=800;
-		//}
-		//if (d.value>25.000 && d.value<=50000){
-			//centreX=700;
-			//centreY=750;
-		//}
-		//if (d.value>50000 && d.value<=100000){
-			//centreX=600;
-			//centreY=650;
-		//}
-		//if (d.value>100.000 && d.value<=500000){
-			//centreX=500;
-			//centreY=450;
-		//}
-		//if(d.value>500000 && d.value<=1000000){
-			//centreX=300;
-			//centreY=350;
-		//}
-		//if (d.value>1000000){
-			//centreX=300;
-			//centreY=200;
-		//}
-		//d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
-		//d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-	//};
-//}
+function moveToAmounts(alpha) {
+	return function(d) {
+		var centreX = svgCentre.x + 75;
+			if (d.value <= 25001) {
+				centreY = svgCentre.y + 75;
+			} else if (d.value <= 50001) {
+				centreY = svgCentre.y + 55;
+			} else if (d.value <= 100001) {
+				centreY = svgCentre.y + 35;
+			} else  if (d.value <= 500001) {
+				centreY = svgCentre.y + 15;
+			} else  if (d.value <= 1000001) {
+				centreY = svgCentre.y - 5;
+			} else  if (d.value <= maxVal) {
+				centreY = svgCentre.y - 25;
+			} else {
+				centreY = svgCentre.y;
+			}
+
+		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
+		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
+	};
+}
+
 
 // Collision detection function by m bostock
 function collide(alpha) {
