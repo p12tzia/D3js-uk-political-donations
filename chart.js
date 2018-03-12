@@ -21,14 +21,13 @@ var entityCentres = {
 		individual: {x: w / 3.65, y: h / 3.3},
 	};
 
-var amountCentres={
-	amount1:{x:w/3.65, y:h/2.3},
-	amount2:{x:w/3.65, y:h/1.8},
-	amount3:{x:w/1.15, y:h/1.9},
-	amount4:{x:w/1.12, y:h/3.2},
-	amount5:{x:w/1.8,  y:h/2.8},
-	amount6:{x:w/3.65, y:h/3.3},
-    };
+var amountCenters={
+	amount1:{x:250,y:h/2-200},
+	amount2:{x:500,y:h/2-200},
+	amount3:{x:800,y:h/2-200},
+	amount4:{x:380,y:h/2-20},
+	amount5:{x:580,y:h/2-20}
+};
 
 var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
 
