@@ -281,27 +281,27 @@ function moveToFunds(alpha) {
 
 function moveToAmounts(alpha){
 	return function(d){
-		if (d.value<=25.000){
+		if (d.value<=25000){
 			centreX=amountCenters.amount1.x;
 			centreY=amountCenters.amount1.y;
 		}
-		if (d.value>25.000 && d.value<=50.000){
+		if (d.value>25.000 && d.value<=50000){
 			centreX=amountCenters.amount2.x;
 			centreY=amountCenters.amount2.y;
 		}
-		if (d.value>50.000 && d.value<=100.000){
+		if (d.value>50000 && d.value<=100000){
 			centreX=amountCenters.amount3.x;
 			centreY=amountCenters.amount3.y;
 		}
-		if (d.value>100.000 && d.value<=500.000){
+		if (d.value>100.000 && d.value<=500000){
 			centreX=amountCenters.amount4.x;
 			centreY=amountCenters.amount4.y;
 		}
-		if(d.value>500.000 && d.value<=1.000.000){
+		if(d.value>500000 && d.value<=1000000){
 			centreX=amountCenters.amount5.x;
 			centreY=amountCenters.amount5.y;
 		}
-		if (d.value>1.000.000){
+		if (d.value>1000000){
 			centreX=amountCenters.amount6.x;
 			centreY=amountCenters.amount6.y;
 		}
