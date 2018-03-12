@@ -273,30 +273,34 @@ function moveToFunds(alpha) {
 	};
 }
 
-function moveToAmounts(alpha) {
-	return function(d) {
-		var centreX = svgCentre.x + 75;
-			if (d.value <= 25001) {
-				centreY = svgCentre.y + 75;
-			} else if (d.value <= 50001) {
-				centreY = svgCentre.y + 55;
-			} else if (d.value <= 100001) {
-				centreY = svgCentre.y + 35;
-			} else  if (d.value <= 500001) {
-				centreY = svgCentre.y + 15;
-			} else  if (d.value <= 1000001) {
-				centreY = svgCentre.y - 5;
-			} else  if (d.value <= maxVal) {
-				centreY = svgCentre.y - 25;
-			} else {
-				centreY = svgCentre.y;
+function moveToAmountofDono(alpha){
+	return function(d){
+		var centreY = entityCentres[d.entity].y;
+		var centreX = entityCentres[d.entity].x;
+
+			if (d.value <= 1000001){
+				
+				centreX = 400;
+				centreY = 450;
+
+			} else if (d.value <= 1000001){
+
+				centreX = 550;
+				centreY = 450;
+
+			}
+			else if(d.value>1000001)
+			{
+				centreX = 740;
+				centreY = 450;
 			}
 
-		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
-		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
+
+		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
+		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+
 	};
 }
-
 
 // Collision detection function by m bostock
 function collide(alpha) {
