@@ -273,7 +273,7 @@ function moveToFunds(alpha) {
 	};
 }
 
-function moveToAmountofDono(alpha){
+function moveToAmounts(alpha){
 	return function(d){
 		var centreY = entityCentres[d.entity].y;
 		var centreX = entityCentres[d.entity].x;
