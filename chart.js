@@ -89,7 +89,7 @@ function transition(name) {
 		//$("#view-amount-donation").fadeIn(1000);
 		//return amountType();
 	//}
-}
+
 
 function start() {
 
