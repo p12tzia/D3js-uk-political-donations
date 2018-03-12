@@ -113,9 +113,9 @@ li {
     text-align:left;
 }
 #donation-amount-2 {
-   top: 205px;
+   top: 400px;
     text-align: right;
-    right: 50;
+    right: 0;
 }
 #donation-amount-3 {
     top: 390px;
