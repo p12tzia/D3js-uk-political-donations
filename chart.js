@@ -278,7 +278,7 @@ function moveToAmountofDono(alpha){
 		var centreY = entityCentres[d.entity].y;
 		var centreX = entityCentres[d.entity].x;
 
-			if (d.value <= 1000001){
+			if (d.value <= 100001){
 				
 				centreX = 400;
 				centreY = 450;
