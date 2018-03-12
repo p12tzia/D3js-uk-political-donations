@@ -105,7 +105,7 @@ li {
 /*	Amount type layout */
 #view-amount-donation {
     height: 100%;
-    left: 400px;
+    left: 530px;
     width: 370px;
 }
 #donation-amount-1 {
@@ -114,7 +114,7 @@ li {
 #donation-amount-2 {
    top: 370px;
    text-align: right;
-   right: 50;
+   right: 0;
 }
 #donation-amount-3 {
     top: 200px;
@@ -122,7 +122,7 @@ li {
 #donation-amount-4 {
    top: 530px;
    text-align: right;
-   right: 50;
+   right: 0;
 }
 /* Value scale */
 
