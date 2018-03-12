@@ -109,9 +109,8 @@ li {
     width: 370px;
 }
 #donation-amount-1 {
-    top: 100px;
+    top: 20px;
     text-align:left;
-    left:20;
 }
 #donation-amount-2 {
    top: 205px;
