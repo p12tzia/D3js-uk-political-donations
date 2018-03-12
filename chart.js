@@ -21,6 +21,15 @@ var entityCentres = {
 		individual: {x: w / 3.65, y: h / 3.3},
 	};
 
+var amountCentres={
+	amount1:{x:w/3.65, y:h/2.3},
+	amount2:{x:w/3.65, y:h/1.8},
+	amount3:{x:w/1.15, y:h/1.9},
+	amount4:{x:w/1.12, y:h/3.2},
+	amount5:{x:w/1.8,  y:h/2.8},
+	amount6:{x:w/3.65, y:h/3.3},
+    };
+
 var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
 
 var svgCentre = { 
@@ -48,6 +57,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
+		$("#view-amount-donation").fadeOut(250);
 		return total();
 		//location.reload();
 	}
@@ -57,6 +67,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeIn(1000);
+		$("#view-amount-donation").fadeOut(250);
 		return partyGroup();
 	}
 	if (name === "group-by-donor-type") {
@@ -65,6 +76,7 @@ function transition(name) {
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-donor-type").fadeIn(1000);
+		$("#view-amount-donation").fadeOut(250);
 		return donorType();
 	}
 	if (name === "group-by-money-source")
@@ -73,8 +85,19 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
+	        $("#view-amount-donation").fadeOut(250);
 		return fundsType();
 	}
+        if (name === "group-by-amount-donation"){
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-donor-type").fadeOut(250);
+		$("#view-party-type").fadeOut(250);
+		$("#view-source-type").fadeOut(250);
+		$("#view-amount-donation").fadeIn(1000);
+		return amountType();
+	}
+}
 
 function start() {
 
@@ -142,6 +165,14 @@ function fundsType() {
 		.start();
 }
 
+function amountType() {
+	force.gravity(0)
+		.friction(0.8)
+		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
+		.on("tick", amounts)
+		.start();
+}
+
 function parties(e) {
 	node.each(moveToParties(e.alpha));
 
@@ -158,6 +189,14 @@ function entities(e) {
 
 function types(e) {
 	node.each(moveToFunds(e.alpha));
+
+
+		node.attr("cx", function(d) { return d.x; })
+			.attr("cy", function(d) {return d.y; });
+}
+
+function amounts(e) {
+	node.each(moveToAmounts(e.alpha));
 
 
 		node.attr("cx", function(d) { return d.x; })
@@ -235,6 +274,37 @@ function moveToFunds(alpha) {
 		} else {
 			centreX = entityCentres[d.entity].x + 60;
 			centreY = 380;
+		}
+		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
+		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+	};
+}
+
+function moveToAmounts(alpha){
+	return function(d){
+		if (d.value<=25.000){
+			centreX=amountCenters.amount1.x;
+			centreY=amountCenters.amount1.y;
+		}
+		if (d.value>25.000 && d.value<=50.000){
+			centreX=amountCenters.amount2.x;
+			centreY=amountCenters.amount2.y;
+		}
+		if (d.value>50.000 && d.value<=100.000){
+			centreX=amountCenters.amount3.x;
+			centreY=amountCenters.amount3.y;
+		}
+		if (d.value>100.000 && d.value<=500.000){
+			centreX=amountCenters.amount4.x;
+			centreY=amountCenters.amount4.y;
+		}
+		if(d.value>500.000 && d.value<=1.000.000){
+			centreX=amountCenters.amount5.x;
+			centreY=amountCenters.amount5.y;
+		}
+		if (d.value>1.000.000){
+			centreX=amountCenters.amount6.x;
+			centreY=amountCenters.amount6.y;
 		}
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
