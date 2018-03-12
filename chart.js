@@ -21,13 +21,6 @@ var entityCentres = {
 		individual: {x: w / 3.65, y: h / 3.3},
 	};
 
-var amountCenters={
-	amount1:{x:250,y:h/2-200},
-	amount2:{x:500,y:h/2-200},
-	amount3:{x:800,y:h/2-200},
-	amount4:{x:380,y:h/2-20},
-	amount5:{x:580,y:h/2-20}
-};
 
 var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
 
@@ -281,29 +274,31 @@ function moveToFunds(alpha) {
 
 function moveToAmounts(alpha){
 	return function(d){
+		  var  centreX;
+		  var  centreY;
 		if (d.value<=25000){
-			centreX=amountCenters.amount1.x;
-			centreY=amountCenters.amount1.y;
+			centreX=200;
+			centreY=800;
 		}
 		if (d.value>25.000 && d.value<=50000){
-			centreX=amountCenters.amount2.x;
-			centreY=amountCenters.amount2.y;
+			centreX=700;
+			centreY=750;
 		}
 		if (d.value>50000 && d.value<=100000){
-			centreX=amountCenters.amount3.x;
-			centreY=amountCenters.amount3.y;
+			centreX=600;
+			centreY=650;
 		}
 		if (d.value>100.000 && d.value<=500000){
-			centreX=amountCenters.amount4.x;
-			centreY=amountCenters.amount4.y;
+			centreX=500;
+			centreY=450;
 		}
 		if(d.value>500000 && d.value<=1000000){
-			centreX=amountCenters.amount5.x;
-			centreY=amountCenters.amount5.y;
+			centreX=300;
+			centreY=350;
 		}
 		if (d.value>1000000){
-			centreX=amountCenters.amount6.x;
-			centreY=amountCenters.amount6.y;
+			centreX=300;
+			centreY=200;
 		}
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
