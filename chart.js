@@ -71,7 +71,7 @@ function transition(name) {
 		$("#view-amount-donation").fadeOut(250);
 		return donorType();
 	}
-	if (name === "group-by-money-source")
+	if (name === "group-by-money-source"){
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
@@ -356,7 +356,7 @@ function display(data) {
 				y: -y
       };
 			
-      nodes.push(node)
+      nodes.push(node);
 	});
 
 	console.log(nodes);
