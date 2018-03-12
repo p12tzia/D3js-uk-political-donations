@@ -275,25 +275,23 @@ function moveToFunds(alpha) {
 
 function moveToAmounts(alpha){
 	return function(d){
-		var centreY; 
-		var centreX; 
+		     var centreY; 
+		     var centreX; 
+                 if (d.value <= 100000){	
+			centreX = 300;
+			centreY = 250;
 
-		if (d.value <= 100001){
-				
-			centreX = 400;
-			centreY = 450;
+		} else if (d.value > 100000 && d.value <=500000){
+                        centreX = 450;
+			centreY = 700;
 
-		} else if (d.value <= 1000001){
-
-			centreX = 550;
-			centreY = 450;
-
+		}  else if(d.value>500000 && d.value<=1000000){
+			centreX = 600;
+			centreY = 200;
+		}  else if(d.value>1000000){
+			centreX = 700;
+		        centreY = 750;
 		}
-		  else if(d.value>1000001)
-			{
-				centreX = 740;
-				centreY = 450;
-			}
 
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
