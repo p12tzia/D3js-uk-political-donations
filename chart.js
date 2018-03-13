@@ -282,14 +282,14 @@ function moveToAmounts(alpha){
 			centreY = 300;
 
 		} else if (d.value > 100000 && d.value <=500000){
-                        centreX = 450;
+                        centreX = 600;
 			centreY = 700;
 
 		}  else if(d.value>500000 && d.value<=1000000){
 			centreX = 200;
 			centreY = 600;
 		}  else if(d.value>1000000){
-			centreX = 900;
+			centreX = 700;
 		        centreY = 400;
 		}
 
