@@ -129,6 +129,13 @@ li {
 
 /* Value scale */
 
+.zoom{
+    transition: transform .2s;
+}
+
+
+
+
 #value-scale {
     opacity: 0.5;
     font-size: 0.75em;
