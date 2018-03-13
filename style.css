@@ -109,7 +109,7 @@ li {
 }
 #donation-amount-1{
    top:110px;
-   left:30px;
+   left:20px;
 }
 #donation-amount-2{
     top: 330px;
@@ -118,26 +118,18 @@ li {
     
 }
 #donation-amount-3{
-    top: 500px;
-    left:20px;
+    top: 530px;
+    left:30px;
 }
 #donation-amount-4{
     top: 450px;
     text-align: right;
-    right: -50px;
+    right: -80px;
 }
 
 
 
 /* Value scale */
-
-.zoom{
-    transition: transform .2s;
-}
-
-.zoom:hover {
-    transform: scale(1.5);
-}
 
 #value-scale {
     opacity: 0.5;
@@ -152,6 +144,15 @@ li {
 #f { top: 648px; left: 575px; }
 
 /* End of view */
+
+.zoom{
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    transform: scale(1.5);
+}
+
 
 circle {
     stroke: rgba(238, 238, 238, 1);
