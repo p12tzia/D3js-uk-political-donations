@@ -133,8 +133,9 @@ li {
     transition: transform .2s;
 }
 
-
-
+.zoom:hover {
+    transform: scale(1.5);
+}
 
 #value-scale {
     opacity: 0.5;
