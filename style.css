@@ -113,8 +113,7 @@ li {
 }
 #donation-amount-2 {
    top: 370px;
-   text-align: right;
-   right: 0;
+   right: -80;
 }
 #donation-amount-3 {
     top: 200px;
