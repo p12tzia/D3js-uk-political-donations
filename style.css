@@ -78,7 +78,7 @@ li {
 /*	Donor type layout */
 #view-donor-type {
     height: 100%;
-    left: 500px;
+    left: 370px;
     width: 500px;
     
 }
@@ -105,7 +105,7 @@ li {
 /*	Amount type layout */
 #view-amount-donation {
     height: 100%;
-    left: 500px;
+    right: 500px;
     width: 370px;
 }
 
