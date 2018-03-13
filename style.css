@@ -104,8 +104,8 @@ li {
 
 /*	Amount type layout */
 #view-amount-donation {
-    height: 100%;
-    width: 500px;
+    height: 200%;
+    width: 1000px;
 }
 
 /* Value scale */
