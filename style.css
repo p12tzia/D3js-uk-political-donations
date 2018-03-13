@@ -107,22 +107,7 @@ li {
     height: 100%;
     width: 370px;
 }
-#donation-amount-1 {
-    top: 50px;
-    left:50;
-}
-#donation-amount-2 {
-   top: 370px;
-   right: -20;
-}
-#donation-amount-3 {
-    top: 200px;
-}
-#donation-amount-4 {
-   top: 530px;
-   text-align: right;
-   right: 0;
-}
+
 /* Value scale */
 
 #value-scale {
