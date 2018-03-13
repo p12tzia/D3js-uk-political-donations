@@ -105,15 +105,15 @@ li {
 /*	Amount type layout */
 #view-amount-donation {
     height: 100%;
-    left: 530px;
     width: 370px;
 }
 #donation-amount-1 {
     top: 50px;
+    left:50;
 }
 #donation-amount-2 {
    top: 370px;
-   right: -80;
+   right: -20;
 }
 #donation-amount-3 {
     top: 200px;
