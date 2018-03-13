@@ -3,7 +3,8 @@ body {
     font-family:'Raleway', 'Open Sans', sans-serif;
 }
 p1 {
-    margin: 30px 10px;
+    margin: 20px 0;
+    padding:30px 0;
 }
 p {
     margin: 20px 0;
@@ -115,7 +116,7 @@ li {
    left:20px;
 }
 #donation-amount-2{
-    top: 110px;
+    top: 70px;
     text-align: right;
     right: -130px;
     
