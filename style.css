@@ -3,7 +3,7 @@ body {
     font-family:'Raleway', 'Open Sans', sans-serif;
 }
 p {
-    margin: 5px 0;
+    margin: 15px 0;
 }
 strong {
     font-weight: 700;
@@ -119,7 +119,8 @@ li {
 }
 #donation-amount-3{
     top: 530px;
-    left:30px;
+    text-align: right;
+    right:0;
 }
 #donation-amount-4{
     top: 450px;
