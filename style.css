@@ -134,7 +134,7 @@ li {
 }
 
 .zoom:hover {
-    transform: scale(1.5);
+    transform: scale(3.0);
 }
 
 #value-scale {
