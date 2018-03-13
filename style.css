@@ -110,9 +110,21 @@ li {
 }
 #donation-amount-1{
    top:50;
-   left:-600px;
-   text-align:center;
 }
+#donation-amount-2{
+    top: 205px;
+    text-align: right;
+    right: 0;
+}
+#donation-amount-3{
+    top: 390px;
+}
+#donation-amount-4{
+    top: 530px;
+    text-align: right;
+    right: 0;
+}
+
 
 
 /* Value scale */
