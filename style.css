@@ -130,7 +130,7 @@ li {
 /* Value scale */
 
 .zoom{
-    transition: transform .4s;
+    transition: transform .2s;
 }
 
 .zoom:hover {
