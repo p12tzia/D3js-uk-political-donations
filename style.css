@@ -2,6 +2,9 @@ body {
     background-color: #ffffff;
     font-family:'Raleway', 'Open Sans', sans-serif;
 }
+p1 {
+    margin: 15px 0;
+}
 p {
     margin: 15px 0;
 }
@@ -120,7 +123,7 @@ li {
 #donation-amount-3{
     top: 530px;
     text-align: right;
-    right:130px;
+    right:160px;
 }
 #donation-amount-4{
     top: 450px;
