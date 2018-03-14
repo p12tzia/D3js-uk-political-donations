@@ -109,6 +109,7 @@ function start() {
 		.style("fill", function(d) { return fill(d.party); })
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout);
+	        .on("click", googleSearch);
 		// Alternative title based 'tooltips'
 		// node.append("title")
 		//	.text(function(d) { return d.donor; });
@@ -425,5 +426,11 @@ $(document).ready(function() {
     return d3.csv("data/7500up.csv", display);
 
 });
+
+function googleSearch(d){ 
+		
+	window.open('http://google.com/search?q='+d.donor);
+
+}
 
 
