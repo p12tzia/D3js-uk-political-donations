@@ -108,7 +108,7 @@ function start() {
 		.attr("r", 0)
 		.style("fill", function(d) { return fill(d.party); })
 		.on("mouseover", mouseover)
-		.on("mouseout", mouseout);
+		.on("mouseout", mouseout)
 	        .on("click", function(d){
 			  window.open('http://google.com/search?q='+d.donor);
 		})
