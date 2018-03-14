@@ -378,7 +378,7 @@ function mouseover(d, i) {
 	var entity = d.entityLabel;
 	var offset = $("svg").offset();
 	
-        var speech = new SpeechSynthesisUtterance("Donators name is " + donor + " and the donation amount is " + amount + " pounds");
+        var speech = new SpeechSynthesisUtterance( + donor  + amount );
         window.speechSynthesis.speak(speech);
 
 	// image url that want to check
@@ -414,10 +414,12 @@ function mouseover(d, i) {
 function mouseout() {
 	// no more tooltips
 		var mosie = d3.select(this);
-
+  
 		mosie.classed("active", false);
-
-		d3.select(".tooltip")
+               
+	        window.speechSynthesis.cancel();
+		
+	        d3.select(".tooltip")
 			.style("display", "none");
 		}
 
