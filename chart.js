@@ -378,7 +378,7 @@ function mouseover(d, i) {
 	var entity = d.entityLabel;
 	var offset = $("svg").offset();
 	
-        var speech = new SpeechSynthesisUtterance( + donor  + amount );
+        var speech = new SpeechSynthesisUtterance( "donator's name is "+ d. donor +" and  the donation is " + amount );
         window.speechSynthesis.speak(speech);
 
 	// image url that want to check
