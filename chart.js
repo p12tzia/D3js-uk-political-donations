@@ -378,7 +378,8 @@ function mouseover(d, i) {
 	var entity = d.entityLabel;
 	var offset = $("svg").offset();
 	
-
+        var speech = new SpeechSynthesisUtterance('":" + donor + ":" + amount');
+        window.speechSynthesis.speak(speech);
 
 	// image url that want to check
 	var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
