@@ -2,7 +2,7 @@ body {
     background-color: #ffffff;
     font-family:'Raleway', 'Open Sans', sans-serif;
 }
-p1,p2 {
+#p1,#p2 {
     margin: 20px 0;
     padding:60px 0;
 }
