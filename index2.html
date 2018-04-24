@@ -60,46 +60,52 @@
             </p>
         </div>
         <div id="value-scale">
-            <div class="zoom" id="f">
-                <p>&#8212;UK average salary</p>
-            </div>
+           
             <div  class="zoom" id="a">
-                <strong>&#163;25k &#8212;</strong>
+                <strong>&#163;5% &#8212;</strong>
             </div>
             <div  class="zoom" id="b">
-                <strong>&#163;50k &#8212;</strong>
+                <strong>&#163;10% &#8212;</strong>
             </div>
             <div  class="zoom" id="c">
-                <strong>&#163;100k &#8212;</strong>
+                <strong>&#163;15% &#8212;</strong>
             </div>
             <div class="zoom"  id="d">
-                <strong>&#163;500k &#8212;</strong>
+                <strong>&#163;20% &#8212;</strong>
             </div>
             <div class="zoom" id="e">
-                <strong>&#163;1m &#8212;</strong>
+                <strong>&#163;25% &#8212;</strong>
             </div>
         </div>
         <!-- End initial-->
 
-        <!-- Public or private money annotations -->
-        <div id="view-source-type">
-            <div id="public-or-private-money" class="public-private">
-                <h3 class="zoom">Public money vs private cash</h3>
-                <p id="p1" class="zoom">Despite general public opposition to more taxpayer money being given to political parties, public funds are already provided to opposition parties in the form of 'short money' from the House of Commons, House of Lords and Scottish Parliament.</p>
-                <p id="p2" class="zoom">The parties also benefit from 'Policy development grants' given by the Electoral Commission.</p>
+        <!-- Split by sex annotations -->
+        <div id="view-sex-type">
+            <div id="sex-split" class="sex-split-1">
+                <h3 class="zoom">Unemploement rate for females, males and all persons</h3>
+                <p id="p1" class="zoom">Διαμόρφωση δεικτών ανεργίας για τις γυναίκες, τους άνδρες και συνολικά και για τα δύο φύλα μαζί</p>
+                
             </div>
-            <div id="public-or-private-money-split" class="public-private">
-                <div class="zoom" id="private-money">
-                    <h5>Private Donations</h5>
-                    <strong>Total: &#163;89,752,524
+            <div id="unem-sex-split" class="sex-split-1">
+                <div class="zoom" id="females-sex">
+                    <h5>Females</h5>
+                    <strong>Total: 
                         </strong>
                             <p>Proportion of all donations:
                                 <strong>77%</strong>
                             </p>
                 </div>
-                <div class="zoom" id="public-money">
-                    <h5>Public Funds</h5>
-                    <strong>Total: &#163;26,579,038
+                <div class="zoom" id="males-sex">
+                    <h5>Males</h5>
+                    <strong>Total: 
+                        </strong>
+                            <p>Proportion of all donations:
+                                <strong>23%</strong>
+                            </p>
+                </div>
+		<div class="zoom" id="allpersons-sex">
+                    <h5>All persons</h5>
+                    <strong>Total: 
                         </strong>
                             <p>Proportion of all donations:
                                 <strong>23%</strong>
@@ -107,9 +113,20 @@
                 </div>
           </div>
         </div>
-        <!-- End public or private money -->
+        <!-- End Split by sex -->
 
-       
+       <!-- Split by quarterly annotations -->
+        <div id="view-quarterly-type">
+		<h3 class="zoom">The unemployment rate quarterly</h3>
+		<div class="zoom" id="Q3-2017">
+                       <h5>The third quarterly of 2017</h5>
+		</div>
+		<div class="zoom" id="Q4-2017">
+                       <h5>The fourth quarterly of 2017</h5>
+		</div>
+	</div>
+	<!-- End Split by quarterly -->
+
     </div>
     <div id="chart"></div>
 
