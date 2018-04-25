@@ -70,16 +70,16 @@ function start() {
 	node = nodeGroup.selectAll("circle")
 		.data(nodes)
 	.enter().append("circle")
-		//.attr("class", function(d) { return "node " + d.party; })
-		//.attr("amount", function(d) { return d.value; })
-		//.attr("donor", function(d) { return d.donor; })
-		//.attr("entity", function(d) { return d.entity; })
+		.attr("class", function(d) { return "node " + d.subject; })
+		.attr("rate", function(d) { return d.value; })
+		.attr("sex", function(d) { return d.subject; })
+		.attr("quarterly", function(d) { return d.time; })
 		//.attr("party", function(d) { return d.party; })
 		// disabled because of slow Firefox SVG rendering
 		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
 		//.style("opacity", 0.9)
 		.attr("r", 0)
-		//.style("fill", function(d) { return fill(d.entity); })
+		.style("fill", function(d) { return fill(d.subject); })
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout)
 	        .on("click", function(d){
