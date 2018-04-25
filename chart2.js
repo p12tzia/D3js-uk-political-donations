@@ -6,20 +6,17 @@ var force, node, data, maxVal;
 var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
-var partyCentres = { 
-    con: { x: w / 3, y: h / 3.3}, 
-    lab: {x: w / 3, y: h / 2.3}, 
-    lib: {x: w / 3	, y: h / 1.8}
+var quarterlyCentres = { 
+    2017-Q3: { x: w / 3, y: h / 3.3}, 
+    2017-Q4: {x: w / 3, y: h / 2.3}, 
   };
 
-var entityCentres = { 
-    company: {x: w / 3.65, y: h / 2.3},
-		union: {x: w / 3.65, y: h / 1.8},
-		other: {x: w / 1.15, y: h / 1.9},
-		society: {x: w / 1.12, y: h  / 3.2 },
-		pub: {x: w / 1.8, y: h / 2.8},
-		individual: {x: w / 3.65, y: h / 3.3},
-	};
+var sexCentres = { 
+    LRUN25FE: {x: w / 3.65, y: h / 2.3},
+    LRUN25MA: {x: w / 3.65, y: h / 1.8},
+    LRUN25TT: {x: w / 1.15, y: h / 1.9},
+		
+};
 
 
 var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
@@ -158,15 +155,15 @@ function all(e) {
 function moveToCentre(alpha) {
 	return function(d) {
 		var centreX = svgCentre.x + 75;
-			if (d.value <= 25001) {
+			if (d.value <= 5.000) {
 				centreY = svgCentre.y + 75;
-			} else if (d.value <= 50001) {
+			} else if (d.value <= 10.000) {
 				centreY = svgCentre.y + 55;
-			} else if (d.value <= 100001) {
+			} else if (d.value <= 15.000) {
 				centreY = svgCentre.y + 35;
-			} else  if (d.value <= 500001) {
+			} else  if (d.value <= 20.000) {
 				centreY = svgCentre.y + 15;
-			} else  if (d.value <= 1000001) {
+			} else  if (d.value <= 25.000) {
 				centreY = svgCentre.y - 5;
 			} else  if (d.value <= maxVal) {
 				centreY = svgCentre.y - 25;
@@ -181,11 +178,11 @@ function moveToCentre(alpha) {
 
 function moveToQuarterly(alpha) {
 	return function(d) {
-		var centreX = partyCentres[d.party].x + 50;
-		if (d.entity === 'pub') {
+		var centreX = quarterlyCentres[d.time].x + 50;
+		if (d.time === '2017-Q3') {
 			centreX = 1200;
 		} else {
-			centreY = partyCentres[d.party].y;
+			centreY = quarterlyCentres[d.time].y;
 		}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -196,13 +193,13 @@ function moveToQuarterly(alpha) {
 
 function moveToSex(alpha) {
 	return function(d) {
-		var centreY = entityCentres[d.entity].y;
-		var centreX = entityCentres[d.entity].x;
-		if (d.entity !== 'pub') {
+		var centreY = sexCentres[d.subject].y;
+		var centreX = sexCentres[d.subject].x;
+		if (d.subject !== 'LRUN25TT') {
 			centreY = 300;
 			centreX = 350;
 		} else {
-			centreX = entityCentres[d.entity].x + 60;
+			centreX = sexCentres[d.subject].x + 60;
 			centreY = 380;
 		}
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -243,23 +240,21 @@ function collide(alpha) {
 
 function display(data) {
 
-	maxVal = d3.max(data, function(d) { return d.amount; });
+	maxVal = d3.max(data, function(d) { return d.value; });
 
 	var radiusScale = d3.scale.sqrt()
 		.domain([0, maxVal])
 			.range([10, 20]);
 
 	data.forEach(function(d, i) {
-		var y = radiusScale(d.amount);
+		var y = radiusScale(d.value);
 		var node = {
-				radius: radiusScale(d.amount) / 5,
-				value: d.amount,
-				donor: d.donor,
-				party: d.party,
-				partyLabel: d.partyname,
-				entity: d.entity,
-				entityLabel: d.entityname,
-				color: d.color,
+				radius: radiusScale(d.value) / 5,
+				rate: d.value,
+				sex: d.subject,
+				quarterly: d.time,
+				subjectLabel: d.Subject,
+				quarterlyLabel: d.Time,
 				x: Math.random() * w,
 				y: -y
       };
@@ -279,17 +274,16 @@ function display(data) {
 function mouseover(d, i) {
 	// tooltip popup
 	var mosie = d3.select(this);
-	//var amount = mosie.attr("amount");
-	var donor = d.donor;
-	var party = d.partyLabel;
-	var entity = d.entityLabel;
+	var rate = mosie.attr("value");
+	var sex = d.Subject;
+	var quarterly = d.Time;
 	var offset = $("svg").offset();
 	
         //var speech = new SpeechSynthesisUtterance( "donator's name is "+ d. donor +" and  the donation is " + amount );
         //window.speechSynthesis.speak(speech);
 
 	// image url that want to check
-	var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
+	//var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
 
 	
 	
@@ -301,11 +295,11 @@ function mouseover(d, i) {
 	
 
 	
-	var infoBox = "<p> Source: <b>" + donor + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
+	var infoBox = "<p> Source: <b>" + sex + "</b> " +  /*"<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span>*/</p>" 	
 	
-	 							+ "<p> Recipient: <b>" + party + "</b></p>"
-								+ "<p> Type of donor: <b>" + entity + "</b></p>"
-								+ "<p> Total value: <b>&#163;" + comma(amount) + "</b></p>";
+	 							+ "<p> Recipient: <b>" + quarterly + "</b></p>"
+								//+ "<p> Type of donor: <b>" + entity + "</b></p>"
+								+ "<p> Total value: <b>&#163;" + comma(value) + "</b></p>";
 	
 	
 	mosie.classed("active", true);
@@ -335,6 +329,6 @@ $(document).ready(function() {
       var id = d3.select(this).attr("id");
       return transition(id);
     });
-    return d3.csv("data/7500up.csv", display);
+    return d3.csv("data/Unemployment_rate.csv", display);
 
 });
