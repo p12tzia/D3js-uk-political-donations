@@ -76,7 +76,7 @@ function start() {
 		//.attr("class", function(d) { return "node " + d.entity; })
 		//.attr("amount", function(d) { return d.value; })
 		//.attr("donor", function(d) { return d.donor; })
-		.attr("entity", function(d) { return d.entity; })
+		//.attr("entity", function(d) { return d.entity; })
 		.attr("party", function(d) { return d.party; })
 		// disabled because of slow Firefox SVG rendering
 		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
