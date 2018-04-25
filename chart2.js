@@ -74,7 +74,7 @@ function start() {
 		.data(nodes)
 	.enter().append("circle")
 		//.attr("class", function(d) { return "node " + d.entity; })
-		//.attr("amount", function(d) { return d.value; })
+		.attr("amount", function(d) { return d.value; })
 		//.attr("donor", function(d) { return d.donor; })
 		//.attr("entity", function(d) { return d.entity; })
 		//.attr("party", function(d) { return d.party; })
