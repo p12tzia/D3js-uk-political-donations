@@ -252,7 +252,7 @@ function display(data) {
 	data.forEach(function(d, i) {
 		var y = radiusScale(d.amount);
 		var node = {
-				radius: radiusScale(d.amount) / 7,
+				radius: radiusScale(d.amount) / 5,
 				value: d.amount,
 				donor: d.donor,
 				party: d.party,
@@ -260,8 +260,8 @@ function display(data) {
 				entity: d.entity,
 				entityLabel: d.entityname,
 				color: d.color,
-				//x: Math.random() * w,
-				//y: -y
+				x: Math.random() * w,
+				y: -y
       };
 			
       nodes.push(node);
