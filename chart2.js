@@ -6,20 +6,20 @@ var force, node, data, maxVal;
 var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
-var partyCentres = { 
+/*var partyCentres = { 
     con: { x: w / 3, y: h / 3.3}, 
     lab: {x: w / 3, y: h / 2.3}, 
     lib: {x: w / 3	, y: h / 1.8}
-  };
+  };*/
 
-var entityCentres = { 
+/*var entityCentres = { 
     company: {x: w / 3.65, y: h / 2.3},
 		union: {x: w / 3.65, y: h / 1.8},
 		other: {x: w / 1.15, y: h / 1.9},
 		society: {x: w / 1.12, y: h  / 3.2 },
 		pub: {x: w / 1.8, y: h / 2.8},
 		individual: {x: w / 3.65, y: h / 3.3},
-	};
+	};*/
 
 
 var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
@@ -82,7 +82,7 @@ function start() {
 		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
 		//.style("opacity", 0.9)
 		.attr("r", 0)
-		.style("fill", function(d) { return fill(d.party); })
+		//.style("fill", function(d) { return fill(d.party); })
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout)
 	        .on("click", function(d){
