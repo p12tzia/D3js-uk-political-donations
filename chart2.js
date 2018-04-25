@@ -4,7 +4,7 @@ var padding = 2;
 var nodes = [];
 var force, node, data, maxVal;
 var brake = 0.2;
-var radius = d3.scale.sqrt().range([20, 40]);
+var radius = d3.scale.sqrt().range([200, 40]);
 
 /*var partyCentres = { 
     LRUN25FE: { x: w / 3, y: h / 3.3}, 
