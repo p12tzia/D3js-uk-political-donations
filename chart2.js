@@ -6,19 +6,17 @@ var force, node, data, maxVal;
 var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
-var partyCentres = { 
-    con: { x: w / 3, y: h / 3.3}, 
-    lab: {x: w / 3, y: h / 2.3}, 
-    lib: {x: w / 3	, y: h / 1.8}
+var quarterlyCentres = { 
+    Q3-2017: { x: w / 3, y: h / 3.3}, 
+    Q4-2017: {x: w / 3, y: h / 2.3}, 
+    
   };
 
-var entityCentres = { 
-    company: {x: w / 3.65, y: h / 2.3},
-		union: {x: w / 3.65, y: h / 1.8},
-		other: {x: w / 1.15, y: h / 1.9},
-		society: {x: w / 1.12, y: h  / 3.2 },
-		pub: {x: w / 1.8, y: h / 2.8},
-		individual: {x: w / 3.65, y: h / 3.3},
+var sexCentres = { 
+    LRUN25FE: {x: w / 3.65, y: h / 2.3},
+    LRUN25MA: {x: w / 3.65, y: h / 1.8},
+    LRUN25TT: {x: w / 1.8, y: h / 2.8},
+	
 	};
 
 
@@ -73,16 +71,15 @@ function start() {
 	node = nodeGroup.selectAll("circle")
 		.data(nodes)
 	.enter().append("circle")
-		.attr("class", function(d) { return "node " + d.party; })
-		.attr("amount", function(d) { return d.value; })
-		.attr("donor", function(d) { return d.donor; })
-		.attr("entity", function(d) { return d.entity; })
-		.attr("party", function(d) { return d.party; })
+		.attr("class", function(d) { return "node " + d.Time; })
+		.attr("rate", function(d) { return d.Value; })
+		.attr("sex", function(d) { return d.SUBJECT; })
+		.attr("quarterly", function(d) { return d.Time; })
 		// disabled because of slow Firefox SVG rendering
 		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
 		//.style("opacity", 0.9)
 		.attr("r", 0)
-		.style("fill", function(d) { return fill(d.party); })
+		.style("fill", function(d) { return fill(d.Time); })
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout)
 	        
@@ -177,11 +174,11 @@ function moveToCentre(alpha) {
 
 function moveToQuarterlies(alpha) {
 	return function(d) {
-		var centreX = partyCentres[d.party].x + 50;
+		var centreX = quarterlyCentres[d.Time].x + 50;
 		if (d.entity === 'pub') {
 			centreX = 1200;
 		} else {
-			centreY = partyCentres[d.party].y;
+			centreY =quarterlyCentres[d.Time].y;
 		}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -192,13 +189,13 @@ function moveToQuarterlies(alpha) {
 
 function moveToSexes(alpha) {
 	return function(d) {
-		var centreY = entityCentres[d.entity].y;
-		var centreX = entityCentres[d.entity].x;
-		if (d.entity !== 'pub') {
+		var centreY = sexCentres[d.SUBJECT].y;
+		var centreX = sexCentres[d.SUBJECT].x;
+		if (d.SUBJECT !== 'LRUN25TT') {
 			centreY = 300;
 			centreX = 350;
 		} else {
-			centreX = entityCentres[d.entity].x + 60;
+			centreX = sexCentres[d.SUBJECT].x + 60;
 			centreY = 380;
 		}
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -247,16 +244,13 @@ function display(data) {
 			.range([10, 20]);
 
 	data.forEach(function(d, i) {
-		var y = radiusScale(d.amount);
+		var y = radiusScale(d.Value);
 		var node = {
-				radius: radiusScale(d.amount) / 5,
-				value: d.amount,
-				donor: d.donor,
-				party: d.party,
-				partyLabel: d.partyname,
-				entity: d.entity,
-				entityLabel: d.entityname,
-				color: d.color,
+				radius: radiusScale(d.Value) / 5,
+				value: d.Value,
+				sex: d.SUBJECT,
+				quarterly: d.Time,
+			
 				x: Math.random() * w,
 				y: -y
       };
@@ -276,17 +270,17 @@ function display(data) {
 function mouseover(d, i) {
 	// tooltip popup
 	var mosie = d3.select(this);
-	var amount = mosie.attr("amount");
-	var donor = d.donor;
-	var party = d.partyLabel;
-	var entity = d.entityLabel;
+	var rate = mosie.attr("rate");
+	var sex = d.SUBJECT;
+	var quarterly = d.Time;
+	//var entity = d.entityLabel;
 	var offset = $("svg").offset();
 	
-        var speech = new SpeechSynthesisUtterance( "donator's name is "+ d. donor +" and  the donation is " + amount );
-        window.speechSynthesis.speak(speech);
+        //var speech = new SpeechSynthesisUtterance( "donator's name is "+ d. donor +" and  the donation is " + amount );
+        //window.speechSynthesis.speak(speech);
 
 	// image url that want to check
-	var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
+	//var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
 
 	
 	
@@ -298,19 +292,19 @@ function mouseover(d, i) {
 	
 
 	
-	var infoBox = "<p> Source: <b>" + donor + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
+	//var infoBox = "<p> Source: <b>" + donor + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
 	
-	 							+ "<p> Recipient: <b>" + party + "</b></p>"
-								+ "<p> Type of donor: <b>" + entity + "</b></p>"
-								+ "<p> Total value: <b>&#163;" + comma(amount) + "</b></p>";
+	 							//+ "<p> Recipient: <b>" + party + "</b></p>"
+								//+ "<p> Type of donor: <b>" + entity + "</b></p>"
+								//+ "<p> Total value: <b>&#163;" + comma(amount) + "</b></p>";
 	
 	
-	mosie.classed("active", true);
-	d3.select(".tooltip")
-  	.style("left", (parseInt(d3.select(this).attr("cx") - 80) + offset.left) + "px")
-    .style("top", (parseInt(d3.select(this).attr("cy") - (d.radius+150)) + offset.top) + "px")
-		.html(infoBox)
-			.style("display","block");
+	//mosie.classed("active", true);
+	//d3.select(".tooltip")
+  	//.style("left", (parseInt(d3.select(this).attr("cx") - 80) + offset.left) + "px")
+   // .style("top", (parseInt(d3.select(this).attr("cy") - (d.radius+150)) + offset.top) + "px")
+		//.html(infoBox)
+			//.style("display","block");
 	
 	
 	}
@@ -332,7 +326,7 @@ $(document).ready(function() {
       var id = d3.select(this).attr("id");
       return transition(id);
     });
-    return d3.csv("data/7500up.csv", display);
+    return d3.csv("data/Unemployment_rate.csv", display);
 
 });
 
