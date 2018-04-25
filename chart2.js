@@ -92,11 +92,11 @@ function start() {
 		// node.append("title")
 		//	.text(function(d) { return d.donor; });
 
-		/*force.gravity(0)
+		force.gravity(0)
 			.friction(0.75)
 			.charge(function(d) { return -Math.pow(d.radius, 2) / 3; })
 			.on("tick", all)
-			.start();*/
+			.start();
 
 		node.transition()
 			.duration(2500)
