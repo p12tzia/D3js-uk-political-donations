@@ -79,7 +79,7 @@ function start() {
 		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
 		//.style("opacity", 0.9)
 		.attr("r", 0)
-		.style("fill", function(d) { return fill(d.Time); })
+		.style("fill", function(d) { return fill(d.SUBJECT); })
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout)
 	        
@@ -175,7 +175,7 @@ function moveToCentre(alpha) {
 function moveToQuarterlies(alpha) {
 	return function(d) {
 		var centreX = quarterlyCentres[d.Time].x + 50;
-		if (d.entity === 'pub') {
+		if  (d.SUBJECT !== 'LRUN25TT'){
 			centreX = 1200;
 		} else {
 			centreY =quarterlyCentres[d.Time].y;
@@ -237,7 +237,7 @@ function collide(alpha) {
 
 function display(data) {
 
-	maxVal = d3.max(data, function(d) { return d.amount; });
+	maxVal = d3.max(data, function(d) { return d.Value; });
 
 	var radiusScale = d3.scale.sqrt()
 		.domain([0, maxVal])
