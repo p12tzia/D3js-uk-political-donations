@@ -6,7 +6,7 @@ var force, node, data, maxVal;
 var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
-var partyCentres = { 
+/*var partyCentres = { 
     LRUN25FE: { x: w / 3, y: h / 3.3}, 
     LRUN25MA: {x: w / 3, y: h / 2.3}, 
     LRUN25TT: {x: w / 3	, y: h / 1.8}
@@ -15,7 +15,7 @@ var partyCentres = {
 var entityCentres = { 
     2017-Q3: {x: w / 3.65, y: h / 2.3},
     2017-Q4: {x: w / 3.65, y: h / 1.8},
-  };
+  };*/
 
 
 var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
@@ -108,7 +108,7 @@ function total() {
 }
 
 
-function sexType() {
+/*function sexType() {
 	force.gravity(0)
 		.friction(0.8)
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
@@ -137,7 +137,7 @@ function sexes(e) {
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
-}
+}*/
 
 
 function all(e) {
@@ -173,7 +173,7 @@ function moveToCentre(alpha) {
 	};
 }
 
-function moveToQuarterlies(alpha) {
+/*function moveToQuarterlies(alpha) {
 	return function(d) {
 		var centreX = partyCentres[d.party].x + 50;
 		if (d.entity === '2017-Q3') {
@@ -201,7 +201,7 @@ function moveToSexes(alpha) {
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
 	};
-}
+}*/
 
 
 
@@ -254,7 +254,7 @@ function display(data) {
 				partyLabel: d.partyname,
 				entity: d.entity,
 				entityLabel: d.entityname,
-				//color: d.color,
+				color: d.color,
 				x: Math.random() * w,
 				y: -y
       };
