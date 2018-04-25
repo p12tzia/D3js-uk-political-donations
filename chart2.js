@@ -73,7 +73,7 @@ function start() {
 	node = nodeGroup.selectAll("circle")
 		.data(nodes)
 	.enter().append("circle")
-		.attr("class", function(d) { return "node " + d.value; })
+		//.attr("class", function(d) { return "node " + d.party; })
 		//.attr("amount", function(d) { return d.value; })
 		//.attr("donor", function(d) { return d.donor; })
 		//.attr("entity", function(d) { return d.entity; })
@@ -252,7 +252,7 @@ function display(data) {
 	data.forEach(function(d, i) {
 		var y = radiusScale(d.amount);
 		var node = {
-				radius: radiusScale(d.amount) / 5,
+				radius: radiusScale(d.amount) / 3,
 				value: d.amount,
 				donor: d.donor,
 				party: d.party,
