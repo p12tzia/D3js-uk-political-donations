@@ -7,19 +7,15 @@ var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
 var partyCentres = { 
-    con: { x: w / 3, y: h / 3.3}, 
-    lab: {x: w / 3, y: h / 2.3}, 
-    lib: {x: w / 3	, y: h / 1.8}
+    LRUN25FE: { x: w / 3, y: h / 3.3}, 
+    LRUN25MA: {x: w / 3, y: h / 2.3}, 
+    LRUN25TT: {x: w / 3	, y: h / 1.8}
   };
 
 var entityCentres = { 
-    company: {x: w / 3.65, y: h / 2.3},
-		union: {x: w / 3.65, y: h / 1.8},
-		other: {x: w / 1.15, y: h / 1.9},
-		society: {x: w / 1.12, y: h  / 3.2 },
-		pub: {x: w / 1.8, y: h / 2.8},
-		individual: {x: w / 3.65, y: h / 3.3},
-	};
+    2017-Q3: {x: w / 3.65, y: h / 2.3},
+    2017-Q4: {x: w / 3.65, y: h / 1.8},
+  };
 
 
 var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
@@ -156,15 +152,15 @@ function all(e) {
 function moveToCentre(alpha) {
 	return function(d) {
 		var centreX = svgCentre.x + 75;
-			if (d.value <= 25001) {
+			if (d.value <= 5.0) {
 				centreY = svgCentre.y + 75;
-			} else if (d.value <= 50001) {
+			} else if (d.value <= 10.0) {
 				centreY = svgCentre.y + 55;
-			} else if (d.value <= 100001) {
+			} else if (d.value <= 15.0) {
 				centreY = svgCentre.y + 35;
-			} else  if (d.value <= 500001) {
+			} else  if (d.value <= 20.0) {
 				centreY = svgCentre.y + 15;
-			} else  if (d.value <= 1000001) {
+			} else  if (d.value <= 25.0) {
 				centreY = svgCentre.y - 5;
 			} else  if (d.value <= maxVal) {
 				centreY = svgCentre.y - 25;
@@ -180,7 +176,7 @@ function moveToCentre(alpha) {
 function moveToQuarterlies(alpha) {
 	return function(d) {
 		var centreX = partyCentres[d.party].x + 50;
-		if (d.entity === 'pub') {
+		if (d.entity === '2017-Q3') {
 			centreX = 1200;
 		} else {
 			centreY = partyCentres[d.party].y;
@@ -195,7 +191,7 @@ function moveToSexes(alpha) {
 	return function(d) {
 		var centreY = entityCentres[d.entity].y;
 		var centreX = entityCentres[d.entity].x;
-		if (d.entity !== 'pub') {
+		if (d.entity !== '2017-Q3') {
 			centreY = 300;
 			centreX = 350;
 		} else {
