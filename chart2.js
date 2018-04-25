@@ -6,17 +6,19 @@ var force, node, data, maxVal;
 var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
-var quarterlyCentres = { 
-    Q3-2017: { x: w / 3, y: h / 3.3}, 
-    Q4-2017: {x: w / 3, y: h / 2.3}, 
-    
+var partyCentres = { 
+    con: { x: w / 3, y: h / 3.3}, 
+    lab: {x: w / 3, y: h / 2.3}, 
+    lib: {x: w / 3	, y: h / 1.8}
   };
 
-var sexCentres = { 
-    LRUN25FE: {x: w / 3.65, y: h / 2.3},
-    LRUN25MA: {x: w / 3.65, y: h / 1.8},
-    LRUN25TT: {x: w / 1.8, y: h / 2.8},
-	
+var entityCentres = { 
+    company: {x: w / 3.65, y: h / 2.3},
+		union: {x: w / 3.65, y: h / 1.8},
+		other: {x: w / 1.15, y: h / 1.9},
+		society: {x: w / 1.12, y: h  / 3.2 },
+		pub: {x: w / 1.8, y: h / 2.8},
+		individual: {x: w / 3.65, y: h / 3.3},
 	};
 
 
@@ -41,27 +43,51 @@ var tooltip = d3.select("#chart")
 var comma = d3.format(",.0f");
 
 function transition(name) {
-	if (name === "all-unem-rate") {
+	if (name === "all-donations") {
 		$("#initial-content").fadeIn(250);
 		$("#value-scale").fadeIn(1000);
-		$("#view-sex-type").fadeOut(250);
-		$("#view-quarterly-type").fadeOut(250);
+		$("#view-donor-type").fadeOut(250);
+		$("#view-source-type").fadeOut(250);
+		$("#view-party-type").fadeOut(250);
+		$("#view-amount-donation").fadeOut(250);
 		return total();
 		//location.reload();
 	}
-	if (name === "group-by-sex") {
+	if (name === "group-by-party") {
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
-		$("#view-sex-type").fadeIn(1000);
-		$("#view-quarterly-type").fadeOut(250);
-		return sexType();
+		$("#view-donor-type").fadeOut(250);
+		$("#view-source-type").fadeOut(250);
+		$("#view-party-type").fadeIn(1000);
+		$("#view-amount-donation").fadeOut(250);
+		return partyGroup();
 	}
-	if (name === "group-by-quarterly") {
+	if (name === "group-by-donor-type") {
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
-		$("#view-sex-type").fadeOut(250);
-		$("#view-quarterly-type").fadeIn(1000);
-		return quarterlyType();
+		$("#view-party-type").fadeOut(250);
+		$("#view-source-type").fadeOut(250);
+		$("#view-donor-type").fadeIn(1000);
+		$("#view-amount-donation").fadeOut(250);
+		return donorType();
+	}
+	if (name === "group-by-money-source"){
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-donor-type").fadeOut(250);
+		$("#view-party-type").fadeOut(250);
+		$("#view-source-type").fadeIn(1000);
+	        $("#view-amount-donation").fadeOut(250);
+		return fundsType();
+	}
+        if (name === "group-by-amount-donation"){
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-donor-type").fadeOut(250);
+		$("#view-party-type").fadeOut(250);
+		$("#view-source-type").fadeOut(250);
+		$("#view-amount-donation").fadeIn(1000);
+		return amountType();
 	}
 }
 
@@ -71,18 +97,21 @@ function start() {
 	node = nodeGroup.selectAll("circle")
 		.data(nodes)
 	.enter().append("circle")
-		.attr("class", function(d) { return "node " + d.Time; })
-		.attr("rate", function(d) { return d.Value; })
-		.attr("sex", function(d) { return d.SUBJECT; })
-		.attr("quarterly", function(d) { return d.Time; })
+		.attr("class", function(d) { return "node " + d.party; })
+		.attr("amount", function(d) { return d.value; })
+		.attr("donor", function(d) { return d.donor; })
+		.attr("entity", function(d) { return d.entity; })
+		.attr("party", function(d) { return d.party; })
 		// disabled because of slow Firefox SVG rendering
 		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
 		//.style("opacity", 0.9)
 		.attr("r", 0)
-		.style("fill", function(d) { return fill(d.SUBJECT); })
+		.style("fill", function(d) { return fill(d.party); })
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout)
-	        
+	        .on("click", function(d){
+			  window.open('http://google.com/search?q='+d.donor);
+		})
 		// Alternative title based 'tooltips'
 		// node.append("title")
 		//	.text(function(d) { return d.donor; });
@@ -107,33 +136,64 @@ function total() {
 		.start();
 }
 
-function quarterlyType() {
+function partyGroup() {
 	force.gravity(0)
 		.friction(0.8)
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", quarterlies)
+		.on("tick", parties)
 		.start()
 		.colourByParty();
 }
 
-function sexType() {
+function donorType() {
 	force.gravity(0)
 		.friction(0.8)
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", sexes)
+		.on("tick", entities)
 		.start();
 }
 
+function fundsType() {
+	force.gravity(0)
+		.friction(0.75)
+		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
+		.on("tick", types)
+		.start();
+}
 
-function quarterlies(e) {
-	node.each(moveToQuarterlies(e.alpha));
+function amountType() {
+	force.gravity(0)
+		.friction(0.8)
+		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
+		.on("tick", amounts)
+		.start();
+}
+
+function parties(e) {
+	node.each(moveToParties(e.alpha));
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
 }
 
-function sexes(e) {
-	node.each(moveToSexes(e.alpha));
+function entities(e) {
+	node.each(moveToEnts(e.alpha));
+
+		node.attr("cx", function(d) { return d.x; })
+			.attr("cy", function(d) {return d.y; });
+}
+
+function types(e) {
+	node.each(moveToFunds(e.alpha));
+
+
+		node.attr("cx", function(d) { return d.x; })
+			.attr("cy", function(d) {return d.y; });
+}
+
+function amounts(e) {
+	node.each(moveToAmounts(e.alpha));
+
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
@@ -172,13 +232,13 @@ function moveToCentre(alpha) {
 	};
 }
 
-function moveToQuarterlies(alpha) {
+function moveToParties(alpha) {
 	return function(d) {
-		var centreX = quarterlyCentres[d.Time].x + 50;
-		if  (d.SUBJECT !== 'LRUN25TT'){
+		var centreX = partyCentres[d.party].x + 50;
+		if (d.entity === 'pub') {
 			centreX = 1200;
 		} else {
-			centreY =quarterlyCentres[d.Time].y;
+			centreY = partyCentres[d.party].y;
 		}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -186,16 +246,29 @@ function moveToQuarterlies(alpha) {
 	};
 }
 
-
-function moveToSexes(alpha) {
+function moveToEnts(alpha) {
 	return function(d) {
-		var centreY = sexCentres[d.SUBJECT].y;
-		var centreX = sexCentres[d.SUBJECT].x;
-		if (d.SUBJECT !== 'LRUN25TT') {
+		var centreY = entityCentres[d.entity].y;
+		if (d.entity === 'pub') {
+			centreX = 1200;
+		} else {
+			centreX = entityCentres[d.entity].x;
+		}
+
+		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
+		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+	};
+}
+
+function moveToFunds(alpha) {
+	return function(d) {
+		var centreY = entityCentres[d.entity].y;
+		var centreX = entityCentres[d.entity].x;
+		if (d.entity !== 'pub') {
 			centreY = 300;
 			centreX = 350;
 		} else {
-			centreX = sexCentres[d.SUBJECT].x + 60;
+			centreX = entityCentres[d.entity].x + 60;
 			centreY = 380;
 		}
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -203,6 +276,32 @@ function moveToSexes(alpha) {
 	};
 }
 
+function moveToAmounts(alpha){
+	return function(d){
+		     var centreY; 
+		     var centreX; 
+                 if (d.value <= 100000){	
+			centreX = 250;
+			centreY = 350;
+
+		} else if (d.value > 100000 && d.value <=500000){
+                        centreX = 450;
+			centreY = 300;
+
+		}  else if(d.value>500000 && d.value<=1000000){
+			centreX = 200;
+			centreY = 600;
+		}  else if(d.value>1000000){
+			centreX = 400;
+		        centreY = 600;
+		}
+
+
+		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
+		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+
+	};
+}
 
 // Collision detection function by m bostock
 function collide(alpha) {
@@ -237,20 +336,23 @@ function collide(alpha) {
 
 function display(data) {
 
-	maxVal = d3.max(data, function(d) { return d.Value; });
+	maxVal = d3.max(data, function(d) { return d.amount; });
 
 	var radiusScale = d3.scale.sqrt()
 		.domain([0, maxVal])
 			.range([10, 20]);
 
 	data.forEach(function(d, i) {
-		var y = radiusScale(d.Value);
+		var y = radiusScale(d.amount);
 		var node = {
-				radius: radiusScale(d.Value) / 5,
-				value: d.Value,
-				sex: d.SUBJECT,
-				quarterly: d.Time,
-			
+				radius: radiusScale(d.amount) / 5,
+				value: d.amount,
+				donor: d.donor,
+				party: d.party,
+				partyLabel: d.partyname,
+				entity: d.entity,
+				entityLabel: d.entityname,
+				color: d.color,
 				x: Math.random() * w,
 				y: -y
       };
@@ -270,17 +372,17 @@ function display(data) {
 function mouseover(d, i) {
 	// tooltip popup
 	var mosie = d3.select(this);
-	var rate = mosie.attr("rate");
-	var sex = d.SUBJECT;
-	var quarterly = d.Time;
-	//var entity = d.entityLabel;
+	var amount = mosie.attr("amount");
+	var donor = d.donor;
+	var party = d.partyLabel;
+	var entity = d.entityLabel;
 	var offset = $("svg").offset();
 	
-        //var speech = new SpeechSynthesisUtterance( "donator's name is "+ d. donor +" and  the donation is " + amount );
-        //window.speechSynthesis.speak(speech);
+        var speech = new SpeechSynthesisUtterance( "donator's name is "+ d. donor +" and  the donation is " + amount );
+        window.speechSynthesis.speak(speech);
 
 	// image url that want to check
-	//var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
+	var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
 
 	
 	
@@ -292,19 +394,19 @@ function mouseover(d, i) {
 	
 
 	
-	//var infoBox = "<p> Source: <b>" + donor + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
+	var infoBox = "<p> Source: <b>" + donor + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
 	
-	 							//+ "<p> Recipient: <b>" + party + "</b></p>"
-								//+ "<p> Type of donor: <b>" + entity + "</b></p>"
-								//+ "<p> Total value: <b>&#163;" + comma(amount) + "</b></p>";
+	 							+ "<p> Recipient: <b>" + party + "</b></p>"
+								+ "<p> Type of donor: <b>" + entity + "</b></p>"
+								+ "<p> Total value: <b>&#163;" + comma(amount) + "</b></p>";
 	
 	
-	//mosie.classed("active", true);
-	//d3.select(".tooltip")
-  	//.style("left", (parseInt(d3.select(this).attr("cx") - 80) + offset.left) + "px")
-   // .style("top", (parseInt(d3.select(this).attr("cy") - (d.radius+150)) + offset.top) + "px")
-		//.html(infoBox)
-			//.style("display","block");
+	mosie.classed("active", true);
+	d3.select(".tooltip")
+  	.style("left", (parseInt(d3.select(this).attr("cx") - 80) + offset.left) + "px")
+    .style("top", (parseInt(d3.select(this).attr("cy") - (d.radius+150)) + offset.top) + "px")
+		.html(infoBox)
+			.style("display","block");
 	
 	
 	}
@@ -326,7 +428,6 @@ $(document).ready(function() {
       var id = d3.select(this).attr("id");
       return transition(id);
     });
-    return d3.csv("data/Unemployment_rate.csv", display);
+    return d3.csv("data/7500up.csv", display);
 
 });
-
