@@ -279,7 +279,7 @@ function display(data) {
 function mouseover(d, i) {
 	// tooltip popup
 	var mosie = d3.select(this);
-	var amount = mosie.attr("amount");
+	//var amount = mosie.attr("amount");
 	var donor = d.donor;
 	var party = d.partyLabel;
 	var entity = d.entityLabel;
