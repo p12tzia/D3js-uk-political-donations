@@ -215,9 +215,9 @@ function collide(alpha) {
   var quadtree = d3.geom.quadtree(nodes);
   return function(d) {
     var r = d.radius + radius.domain()[1] + padding,
-        nx1 = d.x + r,
+        nx1 = d.x - r,
         nx2 = d.x + r,
-        ny1 = d.y + r,
+        ny1 = d.y - r,
         ny2 = d.y + r;
     quadtree.visit(function(quad, x1, y1, x2, y2) {
       if (quad.point && (quad.point !== d)) {
@@ -276,7 +276,7 @@ function display(data) {
 	return start();
 }
 
-function mouseover(d, i) {
+/*function mouseover(d, i) {
 	// tooltip popup
 	var mosie = d3.select(this);
 	var amount = mosie.attr("amount");
@@ -328,7 +328,7 @@ function mouseout() {
 		
 	        d3.select(".tooltip")
 			.style("display", "none");
-		}
+		} */
 
 $(document).ready(function() {
 		d3.selectAll(".switch").on("click", function(d) {
