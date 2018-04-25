@@ -213,12 +213,12 @@ function moveToSex(alpha) {
 // Collision detection function by m bostock
 function collide(alpha) {
   var quadtree = d3.geom.quadtree(nodes);
-  /*return function(d) {
+  return function(d) {
     var r = d.radius + radius.domain()[1] + padding,
-        nx1 = d.x - r,
+        nx1 = d.x + r,
         nx2 = d.x + r,
-        ny1 = d.y - r,
-        ny2 = d.y + r;*/
+        ny1 = d.y + r,
+        ny2 = d.y + r;
     quadtree.visit(function(quad, x1, y1, x2, y2) {
       if (quad.point && (quad.point !== d)) {
         var x = d.x - quad.point.x,
