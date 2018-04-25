@@ -243,7 +243,7 @@ function collide(alpha) {
 
 function display(data) {
 
-	maxVal = d3.max(data, function(d) { return d.amount; });
+	maxVal = d3.max(data, function(d) { return d.donor; });
 
 	var radiusScale = d3.scale.sqrt()
 		.domain([0, maxVal])
@@ -276,7 +276,7 @@ function display(data) {
 	return start();
 }
 
-/*function mouseover(d, i) {
+function mouseover(d, i) {
 	// tooltip popup
 	var mosie = d3.select(this);
 	var amount = mosie.attr("amount");
@@ -328,7 +328,7 @@ function mouseout() {
 		
 	        d3.select(".tooltip")
 			.style("display", "none");
-		} */
+		} 
 
 $(document).ready(function() {
 		d3.selectAll(".switch").on("click", function(d) {
