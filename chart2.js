@@ -258,7 +258,7 @@ function display(data) {
 				partyLabel: d.partyname,
 				entity: d.entity,
 				entityLabel: d.entityname,
-				color: d.color,
+				//color: d.color,
 				x: Math.random() * w,
 				y: -y
       };
@@ -334,6 +334,6 @@ $(document).ready(function() {
       var id = d3.select(this).attr("id");
       return transition(id);
     });
-    return d3.csv("data/7500up.csv", display);
+    return d3.csv("data/Unemployment_rate.csv", display);
 
 });
