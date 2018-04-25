@@ -250,9 +250,9 @@ function display(data) {
 			.range([10, 20]);
 
 	data.forEach(function(d, i) {
-		var y = radiusScale(d.entity);
+		var y = radiusScale(d.amount);
 		var node = {
-				radius: radiusScale(d.amount) / 5,
+				radius: radiusScale(d.donor) / 5,
 				value: d.amount,
 				donor: d.donor,
 				party: d.party,
