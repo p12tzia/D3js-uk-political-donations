@@ -243,7 +243,7 @@ function collide(alpha) {
 
 function display(data) {
 
-	maxVal = d3.max(data, function(d) { return d.donor; });
+	maxVal = d3.max(data, function(d) { return d.entity; });
 
 	var radiusScale = d3.scale.sqrt()
 		.domain([0, maxVal])
