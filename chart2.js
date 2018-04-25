@@ -43,51 +43,27 @@ var tooltip = d3.select("#chart")
 var comma = d3.format(",.0f");
 
 function transition(name) {
-	if (name === "all-donations") {
+	if (name === "all-unem-rate") {
 		$("#initial-content").fadeIn(250);
 		$("#value-scale").fadeIn(1000);
-		$("#view-donor-type").fadeOut(250);
-		$("#view-source-type").fadeOut(250);
-		$("#view-party-type").fadeOut(250);
-		$("#view-amount-donation").fadeOut(250);
+		$("#view-sex-type").fadeOut(250);
+		$("#view-quarterly-type").fadeOut(250);
 		return total();
 		//location.reload();
 	}
-	if (name === "group-by-party") {
+	if (name === "group-by-sex") {
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
-		$("#view-donor-type").fadeOut(250);
-		$("#view-source-type").fadeOut(250);
-		$("#view-party-type").fadeIn(1000);
-		$("#view-amount-donation").fadeOut(250);
-		return partyGroup();
+		$("#view-sex-type").fadeIn(1000);
+		$("#view-quarterly-type").fadeOut(250);
+		return sexType();
 	}
-	if (name === "group-by-donor-type") {
+	if (name === "group-by-quarterly") {
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
-		$("#view-party-type").fadeOut(250);
-		$("#view-source-type").fadeOut(250);
-		$("#view-donor-type").fadeIn(1000);
-		$("#view-amount-donation").fadeOut(250);
-		return donorType();
-	}
-	if (name === "group-by-money-source"){
-		$("#initial-content").fadeOut(250);
-		$("#value-scale").fadeOut(250);
-		$("#view-donor-type").fadeOut(250);
-		$("#view-party-type").fadeOut(250);
-		$("#view-source-type").fadeIn(1000);
-	        $("#view-amount-donation").fadeOut(250);
-		return fundsType();
-	}
-        if (name === "group-by-amount-donation"){
-		$("#initial-content").fadeOut(250);
-		$("#value-scale").fadeOut(250);
-		$("#view-donor-type").fadeOut(250);
-		$("#view-party-type").fadeOut(250);
-		$("#view-source-type").fadeOut(250);
-		$("#view-amount-donation").fadeIn(1000);
-		return amountType();
+		$("#view-sex-type").fadeOut(250);
+		$("#view-quarterly-type").fadeIn(1000);
+		return quarterlyType();
 	}
 }
 
@@ -136,24 +112,16 @@ function total() {
 		.start();
 }
 
-function partyGroup() {
-	force.gravity(0)
-		.friction(0.8)
-		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", parties)
-		.start()
-		.colourByParty();
-}
 
-function donorType() {
+function quarterlyType() {
 	force.gravity(0)
 		.friction(0.8)
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", entities)
+		.on("tick", quarterlies)
 		.start();
 }
 
-function fundsType() {
+function sexType() {
 	force.gravity(0)
 		.friction(0.75)
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
@@ -161,38 +129,17 @@ function fundsType() {
 		.start();
 }
 
-function amountType() {
-	force.gravity(0)
-		.friction(0.8)
-		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", amounts)
-		.start();
-}
 
-function parties(e) {
-	node.each(moveToParties(e.alpha));
 
-		node.attr("cx", function(d) { return d.x; })
-			.attr("cy", function(d) {return d.y; });
-}
-
-function entities(e) {
-	node.each(moveToEnts(e.alpha));
+function quarterlies(e) {
+	node.each(moveToQuarterly(e.alpha));
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
 }
 
 function types(e) {
-	node.each(moveToFunds(e.alpha));
-
-
-		node.attr("cx", function(d) { return d.x; })
-			.attr("cy", function(d) {return d.y; });
-}
-
-function amounts(e) {
-	node.each(moveToAmounts(e.alpha));
+	node.each(moveToSex(e.alpha));
 
 
 		node.attr("cx", function(d) { return d.x; })
@@ -232,7 +179,7 @@ function moveToCentre(alpha) {
 	};
 }
 
-function moveToParties(alpha) {
+function moveToQuarterly(alpha) {
 	return function(d) {
 		var centreX = partyCentres[d.party].x + 50;
 		if (d.entity === 'pub') {
@@ -246,21 +193,8 @@ function moveToParties(alpha) {
 	};
 }
 
-function moveToEnts(alpha) {
-	return function(d) {
-		var centreY = entityCentres[d.entity].y;
-		if (d.entity === 'pub') {
-			centreX = 1200;
-		} else {
-			centreX = entityCentres[d.entity].x;
-		}
 
-		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
-		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-	};
-}
-
-function moveToFunds(alpha) {
+function moveToSex(alpha) {
 	return function(d) {
 		var centreY = entityCentres[d.entity].y;
 		var centreX = entityCentres[d.entity].x;
@@ -273,33 +207,6 @@ function moveToFunds(alpha) {
 		}
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-	};
-}
-
-function moveToAmounts(alpha){
-	return function(d){
-		     var centreY; 
-		     var centreX; 
-                 if (d.value <= 100000){	
-			centreX = 250;
-			centreY = 350;
-
-		} else if (d.value > 100000 && d.value <=500000){
-                        centreX = 450;
-			centreY = 300;
-
-		}  else if(d.value>500000 && d.value<=1000000){
-			centreX = 200;
-			centreY = 600;
-		}  else if(d.value>1000000){
-			centreX = 400;
-		        centreY = 600;
-		}
-
-
-		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
-		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-
 	};
 }
 
