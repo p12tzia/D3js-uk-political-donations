@@ -6,17 +6,20 @@ var force, node, data, maxVal;
 var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
-var quarterlyCentres = { 
-    2017-Q3: { x: w / 3, y: h / 3.3}, 
-    2017-Q4: {x: w / 3, y: h / 2.3}, 
+var partyCentres = { 
+    con: { x: w / 3, y: h / 3.3}, 
+    lab: {x: w / 3, y: h / 2.3}, 
+    lib: {x: w / 3	, y: h / 1.8}
   };
 
-var sexCentres = { 
-    LRUN25FE: {x: w / 3.65, y: h / 2.3},
-    LRUN25MA: {x: w / 3.65, y: h / 1.8},
-    LRUN25TT: {x: w / 1.15, y: h / 1.9},
-		
-};
+var entityCentres = { 
+    company: {x: w / 3.65, y: h / 2.3},
+		union: {x: w / 3.65, y: h / 1.8},
+		other: {x: w / 1.15, y: h / 1.9},
+		society: {x: w / 1.12, y: h  / 3.2 },
+		pub: {x: w / 1.8, y: h / 2.8},
+		individual: {x: w / 3.65, y: h / 3.3},
+	};
 
 
 var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
@@ -64,22 +67,21 @@ function transition(name) {
 	}
 }
 
-
 function start() {
 
 	node = nodeGroup.selectAll("circle")
 		.data(nodes)
 	.enter().append("circle")
-		.attr("class", function(d) { return "node " + d.subject; })
-		.attr("rate", function(d) { return d.value; })
-		.attr("sex", function(d) { return d.subject; })
-		.attr("quarterly", function(d) { return d.time; })
-		//.attr("party", function(d) { return d.party; })
+		.attr("class", function(d) { return "node " + d.party; })
+		.attr("amount", function(d) { return d.value; })
+		.attr("donor", function(d) { return d.donor; })
+		.attr("entity", function(d) { return d.entity; })
+		.attr("party", function(d) { return d.party; })
 		// disabled because of slow Firefox SVG rendering
 		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
 		//.style("opacity", 0.9)
 		.attr("r", 0)
-		.style("fill", function(d) { return fill(d.subject); })
+		.style("fill", function(d) { return fill(d.party); })
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout)
 	        .on("click", function(d){
@@ -110,38 +112,37 @@ function total() {
 }
 
 
-function quarterlyType() {
+function sexType() {
 	force.gravity(0)
 		.friction(0.8)
+		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
+		.on("tick", sexes)
+		.start();
+}
+
+function quarterlyType() {
+	force.gravity(0)
+		.friction(0.75)
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
 		.on("tick", quarterlies)
 		.start();
 }
 
-function sexType() {
-	force.gravity(0)
-		.friction(0.75)
-		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", types)
-		.start();
-}
-
-
 
 function quarterlies(e) {
-	node.each(moveToQuarterly(e.alpha));
+	node.each(moveToQuarterlies(e.alpha));
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
 }
 
-function types(e) {
-	node.each(moveToSex(e.alpha));
-
+function sexes(e) {
+	node.each(moveToSexes(e.alpha));
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
 }
+
 
 function all(e) {
 	node.each(moveToCentre(e.alpha))
@@ -155,15 +156,15 @@ function all(e) {
 function moveToCentre(alpha) {
 	return function(d) {
 		var centreX = svgCentre.x + 75;
-			if (d.value <= 5.000) {
+			if (d.value <= 25001) {
 				centreY = svgCentre.y + 75;
-			} else if (d.value <= 10.000) {
+			} else if (d.value <= 50001) {
 				centreY = svgCentre.y + 55;
-			} else if (d.value <= 15.000) {
+			} else if (d.value <= 100001) {
 				centreY = svgCentre.y + 35;
-			} else  if (d.value <= 20.000) {
+			} else  if (d.value <= 500001) {
 				centreY = svgCentre.y + 15;
-			} else  if (d.value <= 25.000) {
+			} else  if (d.value <= 1000001) {
 				centreY = svgCentre.y - 5;
 			} else  if (d.value <= maxVal) {
 				centreY = svgCentre.y - 25;
@@ -176,13 +177,13 @@ function moveToCentre(alpha) {
 	};
 }
 
-function moveToQuarterly(alpha) {
+function moveToQuarterlies(alpha) {
 	return function(d) {
-		var centreX = quarterlyCentres[d.time].x + 50;
-		if (d.time === '2017-Q3') {
+		var centreX = partyCentres[d.party].x + 50;
+		if (d.entity === 'pub') {
 			centreX = 1200;
 		} else {
-			centreY = quarterlyCentres[d.time].y;
+			centreY = partyCentres[d.party].y;
 		}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -190,22 +191,23 @@ function moveToQuarterly(alpha) {
 	};
 }
 
-
-function moveToSex(alpha) {
+function moveToSexes(alpha) {
 	return function(d) {
-		var centreY = sexCentres[d.subject].y;
-		var centreX = sexCentres[d.subject].x;
-		if (d.subject !== 'LRUN25TT') {
+		var centreY = entityCentres[d.entity].y;
+		var centreX = entityCentres[d.entity].x;
+		if (d.entity !== 'pub') {
 			centreY = 300;
 			centreX = 350;
 		} else {
-			centreX = sexCentres[d.subject].x + 60;
+			centreX = entityCentres[d.entity].x + 60;
 			centreY = 380;
 		}
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
 	};
 }
+
+
 
 // Collision detection function by m bostock
 function collide(alpha) {
@@ -236,25 +238,27 @@ function collide(alpha) {
           || y2 < ny1;
     });
   };
-} 
+}
 
 function display(data) {
 
-	maxVal = d3.max(data, function(d) { return d.value; });
+	maxVal = d3.max(data, function(d) { return d.amount; });
 
 	var radiusScale = d3.scale.sqrt()
 		.domain([0, maxVal])
 			.range([10, 20]);
 
 	data.forEach(function(d, i) {
-		var y = radiusScale(d.value);
+		var y = radiusScale(d.amount);
 		var node = {
-				radius: radiusScale(d.value) / 5,
-				rate: d.value,
-				sex: d.subject,
-				quarterly: d.time,
-				subjectLabel: d.Subject,
-				quarterlyLabel: d.Time,
+				radius: radiusScale(d.amount) / 5,
+				value: d.amount,
+				donor: d.donor,
+				party: d.party,
+				partyLabel: d.partyname,
+				entity: d.entity,
+				entityLabel: d.entityname,
+				color: d.color,
 				x: Math.random() * w,
 				y: -y
       };
@@ -274,16 +278,17 @@ function display(data) {
 function mouseover(d, i) {
 	// tooltip popup
 	var mosie = d3.select(this);
-	var rate = mosie.attr("value");
-	var sex = d.Subject;
-	var quarterly = d.Time;
+	var amount = mosie.attr("amount");
+	var donor = d.donor;
+	var party = d.partyLabel;
+	var entity = d.entityLabel;
 	var offset = $("svg").offset();
 	
-        //var speech = new SpeechSynthesisUtterance( "donator's name is "+ d. donor +" and  the donation is " + amount );
-        //window.speechSynthesis.speak(speech);
+        var speech = new SpeechSynthesisUtterance( "donator's name is "+ d. donor +" and  the donation is " + amount );
+        window.speechSynthesis.speak(speech);
 
 	// image url that want to check
-	//var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
+	var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
 
 	
 	
@@ -295,11 +300,11 @@ function mouseover(d, i) {
 	
 
 	
-	var infoBox = "<p> Source: <b>" + sex + "</b> " +  /*"<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span>*/</p>" 	
+	var infoBox = "<p> Source: <b>" + donor + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
 	
-	 							+ "<p> Recipient: <b>" + quarterly + "</b></p>"
-								//+ "<p> Type of donor: <b>" + entity + "</b></p>"
-								+ "<p> Total value: <b>&#163;" + comma(value) + "</b></p>";
+	 							+ "<p> Recipient: <b>" + party + "</b></p>"
+								+ "<p> Type of donor: <b>" + entity + "</b></p>"
+								+ "<p> Total value: <b>&#163;" + comma(amount) + "</b></p>";
 	
 	
 	mosie.classed("active", true);
@@ -318,17 +323,17 @@ function mouseout() {
   
 		mosie.classed("active", false);
                
-	       // window.speechSynthesis.cancel();
+	        window.speechSynthesis.cancel();
 		
 	        d3.select(".tooltip")
 			.style("display", "none");
-		} 
+		}
 
 $(document).ready(function() {
 		d3.selectAll(".switch").on("click", function(d) {
       var id = d3.select(this).attr("id");
       return transition(id);
     });
-    return d3.csv("data/Unemployment_rate.csv", display);
+    return d3.csv("data/7500up.csv", display);
 
 });
