@@ -211,7 +211,7 @@ function moveToSex(alpha) {
 }
 
 // Collision detection function by m bostock
-function collide(alpha) {
+/*function collide(alpha) {
   var quadtree = d3.geom.quadtree(nodes);
   return function(d) {
     var r = d.radius + radius.domain()[1] + padding,
@@ -239,7 +239,7 @@ function collide(alpha) {
           || y2 < ny1;
     });
   };
-}
+} */
 
 function display(data) {
 
