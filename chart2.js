@@ -1,5 +1,5 @@
 // GLOBALS
-var w = 1000,h = 900;
+var w = 1500,h = 1200;
 var padding = 3;
 var nodes = [];
 var force, node, data, maxVal;
