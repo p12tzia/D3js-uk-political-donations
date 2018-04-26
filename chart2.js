@@ -1,10 +1,10 @@
 // GLOBALS
 var w = 1000,h = 900;
-var padding = 2;
+var padding = 3;
 var nodes = [];
 var force, node, data, maxVal;
 var brake = 0.2;
-var radius = d3.scale.sqrt().range([10, 200]);
+var radius = d3.scale.sqrt().range([10, 300]);
 
 /*var partyCentres = { 
     LRUN25FE: { x: w / 3, y: h / 3.3}, 
@@ -247,7 +247,7 @@ function display(data) {
 	data.forEach(function(d, i) {
 		var y = radiusScale(d.amount);
 		var node = {
-				radius: radiusScale(d.amount) / 5,
+				radius: radiusScale(d.amount) / 3,
 				value: d.amount,
 				donor: d.donor,
 				party: d.party,
