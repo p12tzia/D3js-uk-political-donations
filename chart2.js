@@ -155,7 +155,7 @@ function moveToCentre(alpha) {
 			if (d.value <= 5) {
 				centreY = svgCentre.y + 150;
 			} else if (d.value <= 10) {
-				centreY = svgCentre.y + 100;
+				centreY = svgCentre.y + 75;
 			} else if (d.value <= 15) {
 				centreY = svgCentre.y + 35;
 			} else  if (d.value <= 20) {
@@ -242,7 +242,7 @@ function display(data) {
 
 	var radiusScale = d3.scale.sqrt()
 		.domain([0, maxVal])
-			.range([10, 80]);
+			.range([10, 200]);
 
 	data.forEach(function(d, i) {
 		var y = radiusScale(d.amount);
