@@ -247,7 +247,7 @@ function display(data) {
 	data.forEach(function(d, i) {
 		var y = radiusScale(d.amount);
 		var node = {
-				radius: radiusScale(d.amount) / 4,
+				radius: radiusScale(d.amount) / 6,
 				value: d.amount,
 				donor: d.donor,
 				party: d.party,
