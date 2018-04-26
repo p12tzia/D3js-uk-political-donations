@@ -242,7 +242,7 @@ function display(data) {
 
 	var radiusScale = d3.scale.sqrt()
 		.domain([0, maxVal])
-			.range([10, 200]);
+			.range([10, 60]);
 
 	data.forEach(function(d, i) {
 		var y = radiusScale(d.amount);
