@@ -6,7 +6,7 @@ var force, node, data, maxVal;
 var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
-/*var partyCentres = { 
+var partyCentres = { 
     LRUN25FE: { x: w / 3, y: h / 3.3}, 
     LRUN25MA: {x: w / 3, y: h / 2.3}, 
     LRUN25TT: {x: w / 3	, y: h / 1.8}
@@ -15,7 +15,7 @@ var radius = d3.scale.sqrt().range([10, 20]);
 var entityCentres = { 
     2017-Q3: {x: w / 3.65, y: h / 2.3},
     2017-Q4: {x: w / 3.65, y: h / 1.8},
-  };*/
+  };
 
 
 var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
@@ -167,8 +167,8 @@ function moveToCentre(alpha) {
 			}
 			
 
-		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 2.2;
-		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 2.2;
+		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
+		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
 	};
 }
 
