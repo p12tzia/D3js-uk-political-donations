@@ -190,7 +190,7 @@ function moveToSexes(alpha) {
 function moveToQuarterlies(alpha) {
 	return function(d) {
 		var centreY = entityCentres[d.entity].y;
-		if (d.entity === '2017-Q3') {
+		if (d.entity === 'Q3-2017') {
 			centreX = 1200;
 		} else {
 			centreX = entityCentres[d.entity].x;
