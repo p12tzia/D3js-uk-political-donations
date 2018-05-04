@@ -153,22 +153,22 @@ function moveToCentre(alpha) {
 	return function(d) {
 		var centreX = svgCentre.x + 150;
 		if (d.value <= 5) {
-				centreY = svgCentre.y + 75;
+				centreY = svgCentre.y + 100;
 			} else if (d.value <= 10) {
-				centreY = svgCentre.y + 50;
+				centreY = svgCentre.y + 75;
 			} else if (d.value <= 15) {
 				centreY = svgCentre.y + 35;
 			} else  if (d.value <= 20) {
 				centreY = svgCentre.y + 15;
 			} else  if (d.value <= 25) {
-				centreY = svgCentre.y +5;
+				centreY = svgCentre.y -15;
 			} else {
 				centreY = svgCentre.y;
 			}
 			
 
-		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.2;
-		d.y += (centreY - 100 - d.y) * (brake + 0.02) * alpha * 1.2;
+		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 2.2;
+		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 2.2;
 	};
 }
 
