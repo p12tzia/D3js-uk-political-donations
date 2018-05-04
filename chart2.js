@@ -266,7 +266,7 @@ function display(data) {
 
 	force = d3.layout.force()
 		.nodes(nodes)
-		.size([w, h]);
+		//.size([w, h]);
 
 	return start();
 }
