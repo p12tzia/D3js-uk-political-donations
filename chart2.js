@@ -65,7 +65,7 @@ function start() {
 	.enter().append("circle")
 		.attr("class", function(d) { return "node " + d.party; })
 		.attr("amount", function(d) { return d.value; })
-		.attr("donor", function(d) { return d.donor; })
+		.attr("location", function(d) { return d.location; })
 		.attr("entity", function(d) { return d.entity; })
 		.attr("party", function(d) { return d.party; })
 		// disabled because of slow Firefox SVG rendering
@@ -76,7 +76,7 @@ function start() {
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout)
 	        .on("click", function(d){
-			  window.open('http://google.com/search?q='+d.donor);
+			  window.open('http://google.com/search?q='+d.location);
 		})
 		// Alternative title based 'tooltips'
 		// node.append("title")
@@ -248,7 +248,7 @@ function display(data) {
 		var node = {
 				radius: radiusScale(d.amount) / 6,
 				value: d.amount,
-				donor: d.donor,
+				location: d.location,
 				party: d.party,
 				partyLabel: d.partyname,
 				entity: d.entity,
@@ -274,16 +274,16 @@ function mouseover(d, i) {
 	// tooltip popup
 	var mosie = d3.select(this);
 	var amount = mosie.attr("amount");
-	var donor = d.donor;
+	var location = d.location;
 	var party = d.partyLabel;
 	var entity = d.entityLabel;
 	var offset = $("svg").offset();
 	
-        var speech = new SpeechSynthesisUtterance( "donator's name is "+ d. donor +" and  the donation is " + amount );
+        var speech = new SpeechSynthesisUtterance( "donator's name is "+ d. location +" and  the donation is " + amount );
         window.speechSynthesis.speak(speech);
 
 	// image url that want to check
-	var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
+	var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + location + ".ico";
 
 	
 	
@@ -295,7 +295,7 @@ function mouseover(d, i) {
 	
 
 	
-	var infoBox = "<p> Source: <b>" + donor + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
+	var infoBox = "<p> Source: <b>" + location + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
 	
 	 							+ "<p> Recipient: <b>" + party + "</b></p>"
 								+ "<p> Type of donor: <b>" + entity + "</b></p>"
