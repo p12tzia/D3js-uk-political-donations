@@ -151,7 +151,7 @@ function all(e) {
 
 function moveToCentre(alpha) {
 	return function(d) {
-		var centreX = svgCentre.x ;
+		var centreX = svgCentre.x + 100;
 			if (d.value <= 5) {
 				centreY = svgCentre.y + 200;
 			} else if (d.value <= 10) {
