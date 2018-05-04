@@ -21,7 +21,7 @@ var entityCentres = {
 var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
 
 var svgCentre = { 
-    x: w / 3.6, y: h / 2
+    x: w / 2, y: h / 3
   };
 
 var svg = d3.select("#chart").append("svg")
@@ -151,7 +151,7 @@ function all(e) {
 
 function moveToCentre(alpha) {
 	return function(d) {
-		var centreX = svgCentre.x + 250;
+		var centreX = svgCentre.x ;
 			if (d.value <= 5) {
 				centreY = svgCentre.y + 200;
 			} else if (d.value <= 10) {
@@ -168,8 +168,8 @@ function moveToCentre(alpha) {
 				centreY = svgCentre.y;
 			}
 
-		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
-		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
+		//d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
+		//d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
 	};
 }
 
