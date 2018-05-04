@@ -172,34 +172,49 @@ function moveToCentre(alpha) {
 	};
 }
 
-function moveToQuarterlies(alpha) {
-	return function(d) {
-		//var centreX = partyCentres[d.party].x + 50;
-		if (d.entity === '2017-Q3') {
-			centreX = 1200;
-		} else {
-			//centreY = partyCentres[d.party].y;
+function moveToSexes(alpha) {
+	return function(d){
+		     var centreY; 
+		     var centreX; 
+                 if (d.party = LRUN25FE){	
+			centreX = 250;
+			centreY = 350;
+
+		} else if (d.party=LRUN25MA){
+                        centreX = 450;
+			centreY = 300;
+
+		}  else if{
+			centreX = 200;
+			centreY = 600;
 		}
+
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-	};
+
+};
 }
 
-function moveToSexes(alpha) {
-	return function(d) {
-		//var centreY = entityCentres[d.entity].y;
-		//var centreX = entityCentres[d.entity].x;
-		if (d.entity !== '2017-Q3') {
+function moveToQuarterlies(alpha) {
+	return function(d){
+		     var centreY; 
+		     var centreX; 
+                 if (d.entity = 2017-Q3){	
+			centreX = 250;
+			centreY = 350;
+
+		} else if (d.entity=2017-Q4){
+                        centreX = 450;
 			centreY = 300;
-			centreX = 350;
-		} else {
-			//centreX = entityCentres[d.entity].x + 60;
-			centreY = 380;
-		}
+
+		} 
+
+
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-	};
+
+};
 }
 
 
