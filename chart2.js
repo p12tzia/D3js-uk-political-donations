@@ -21,7 +21,7 @@ var entityCentres = {
 var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
 
 var svgCentre = { 
-    x: w / 3, y: h / 5
+    x: w / 3.6, y: h / 2
   };
 
 var svg = d3.select("#chart").append("svg")
