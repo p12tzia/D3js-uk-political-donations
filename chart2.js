@@ -66,7 +66,7 @@ function start() {
 		.attr("class", function(d) { return "node " + d.party; })
 		.attr("amount", function(d) { return d.value; })
 		.attr("place", function(d) { return d.place; })
-		.attr("quarterly", function(d) { return d.quarterly; })
+		.attr("period", function(d) { return d.period; })
 		.attr("party", function(d) { return d.party; })
 		// disabled because of slow Firefox SVG rendering
 		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
@@ -251,8 +251,8 @@ function display(data) {
 				place: d.place,
 				party: d.party,
 				partyLabel: d.partyname,
-				quarterly: d.quarterly,
-				quarterlyLabel: d.quarterlyname,
+				period: d.period,
+				periodLabel: d.periodname,
 				color: d.color,
 				x: Math.random() * w,
 				y: -y
@@ -276,7 +276,7 @@ function mouseover(d, i) {
 	var amount = mosie.attr("amount");
 	var place = d.place;
 	var party = d.partyLabel;
-	var quarterly = d.quarterlyLabel;
+	var period = d.periodLabel;
 	var offset = $("svg").offset();
 	
         var speech = new SpeechSynthesisUtterance( "donator's name is "+ d.place +" and  the donation is " + amount );
@@ -298,7 +298,7 @@ function mouseover(d, i) {
 	var infoBox = "<p> Source: <b>" + place + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
 	
 	 							+ "<p> Recipient: <b>" + party + "</b></p>"
-								+ "<p> Type of quarterly: <b>" + quarterly + "</b></p>"
+								+ "<p> Type of period: <b>" + period + "</b></p>"
 								+ "<p> Total value: <b>&#163;" + comma(amount) + "</b></p>";
 	
 	
