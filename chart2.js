@@ -13,8 +13,8 @@ var partyCentres = {
   };
 
 var entityCentres = { 
-    2017-Q3: {x: w / 3.65, y: h / 2.3},
-    2017-Q4: {x: w / 3.65, y: h / 1.8}
+    Q3-2017: {x: w / 3.65, y: h / 2.3},
+    Q4-2017: {x: w / 3.65, y: h / 1.8}
   };
 
 
