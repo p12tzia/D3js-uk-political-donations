@@ -176,15 +176,15 @@ function moveToSexes(alpha) {
 	return function(d){
 		     var centreY; 
 		     var centreX; 
-                 if (d.party = LRUN25FE){	
+                 if (d.party === 'LRUN25FE'){	
 			centreX = 250;
 			centreY = 350;
 
-		} else if (d.party=LRUN25MA){
+		} else if (d.party==='LRUN25MA'){
                         centreX = 450;
 			centreY = 300;
 
-		}  else if(d.party=LRUN25TT){
+		}  else if(d.party==='LRUN25TT'){
 			centreX = 200;
 			centreY = 600;
 		}
@@ -200,11 +200,11 @@ function moveToQuarterlies(alpha) {
 	return function(d){
 		     var centreY; 
 		     var centreX; 
-                 if (d.entity = 2017-Q3){	
+                 if (d.entity ==='2017-Q3'){	
 			centreX = 250;
 			centreY = 350;
 
-		} else if (d.entity=2017-Q4){
+		} else if (d.entity==='2017-Q4'){
                         centreX = 450;
 			centreY = 300;
 
