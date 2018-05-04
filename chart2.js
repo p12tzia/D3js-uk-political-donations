@@ -187,11 +187,11 @@ function moveToQuarterlies(alpha) {
 		     var centreY; 
 		     var centreX; 
                  if (d.entity === 'Q32017'){	
-			centreX = 250;
+			centreX = 400;
 			centreY = 350;
 
 		} else if(d.entity ==='Q42017'){
-                        centreX = 450;
+                        centreX = 500;
 			centreY = 300;
 
 		}
