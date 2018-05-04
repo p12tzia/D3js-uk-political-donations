@@ -1,5 +1,5 @@
 // GLOBALS
-var w = 1000,h = 900;
+var w = 500,h = 900;
 var padding = 2;
 var nodes = [];
 var force, node, data, maxVal;
@@ -242,7 +242,7 @@ function display(data) {
 
 	var radiusScale = d3.scale.sqrt()
 		.domain([0, maxVal])
-			.range([10, 60]);
+			.range([10, 600]);
 
 	data.forEach(function(d, i) {
 		var y = radiusScale(d.amount);
