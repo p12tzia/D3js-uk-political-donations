@@ -12,11 +12,6 @@ var partyCentres = {
     LRUN25TT: {x: w / 3	, y: h / 1.8}
   };
 
-var entityCentres = { 
-    Q32017: {x: w / 3.65, y: h / 2.3},
-    Q42017: {x: w / 3.65, y: h / 1.8}
-  };
-
 
 var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
 
@@ -188,16 +183,22 @@ function moveToSexes(alpha) {
 }
 
 function moveToQuarterlies(alpha) {
-	return function(d) {
-		var centreY = entityCentres[d.entity].y;
-		//if (d.entity ==='Q32017') {
-			//centreX = 1200;
-		//} else {
-			centreX = entityCentres[d.entity].x;
-		//}
+	return function(d){
+		     var centreY; 
+		     var centreX; 
+                 if (d.entity === 'Q32017'){	
+			centreX = 250;
+			centreY = 350;
+
+		} else if(d.entity ==='Q42017'){
+                        centreX = 450;
+			centreY = 300;
+
+		}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+
 };
 }
 
