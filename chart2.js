@@ -168,8 +168,8 @@ function moveToCentre(alpha) {
 				centreY = svgCentre.y;
 			}
 
-		//d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
-		//d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
+		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
+		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
 	};
 }
 
