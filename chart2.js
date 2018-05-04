@@ -151,7 +151,7 @@ function all(e) {
 
 function moveToCentre(alpha) {
 	return function(d) {
-		var centreX = svgCentre.x + 250;
+		var centreX = svgCentre.x + 100;
 			if (d.value <= 5) {
 				centreY = svgCentre.y + 200;
 			} else if (d.value <= 10) {
@@ -166,8 +166,8 @@ function moveToCentre(alpha) {
 				centreY = svgCentre.y;
 			}
 
-		d.x += (centreX - d.x) * (brake + 0.09) * alpha * 1.2;
-		d.y += (centreY - 100 - d.y) * (brake + 0.09) * alpha * 1.2;
+		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.2;
+		d.y += (centreY - 100 - d.y) * (brake + 0.02) * alpha * 1.2;
 	};
 }
 
