@@ -12,10 +12,10 @@ var partyCentres = {
     LRUN25TT: {x: w / 3	, y: h / 1.8}
   };
 
-/*var entityCentres = { 
-    2017Q3: {x: w / 3.65, y: h / 2.3},
-    2017Q4: {x: w / 3.65, y: h / 1.8}
-  };*/
+var entityCentres = { 
+    '2017-Q3': {x: w / 3.65, y: h / 2.3},
+    '2017-Q4': {x: w / 3.65, y: h / 1.8}
+  };
 
 
 var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
@@ -54,13 +54,13 @@ function transition(name) {
 		$("#view-quarterly-type").fadeOut(250);
 		return sexType();
 	}
-	/*if (name === "group-by-quarterly") {
+	if (name === "group-by-quarterly") {
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-sex-type").fadeOut(250);
 		$("#view-quarterly-type").fadeIn(1000);
 		return quarterlyType();
-	}*/
+	}
 }
 
 function start() {
@@ -116,21 +116,21 @@ function sexType() {
 		.start();
 }
 
-/*function quarterlyType() {
+function quarterlyType() {
 	force.gravity(0)
 		.friction(0.75)
 		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
 		.on("tick", quarterlies)
 		.start();
-}*/
+}
 
 
-/*function quarterlies(e) {
+function quarterlies(e) {
 	node.each(moveToQuarterlies(e.alpha));
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
-}*/
+}
 
 function sexes(e) {
 	node.each(moveToSexes(e.alpha));
@@ -187,7 +187,7 @@ function moveToSexes(alpha) {
 
 }
 
-/*function moveToQuarterlies(alpha) {
+function moveToQuarterlies(alpha) {
 	return function(d) {
 		var centreY = entityCentres[d.entity].y;
 		if (d.entity === '2017-Q3') {
@@ -199,7 +199,7 @@ function moveToSexes(alpha) {
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
 };
-}*/
+}
 
 
 
