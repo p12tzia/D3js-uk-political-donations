@@ -153,15 +153,15 @@ function moveToCentre(alpha) {
 	return function(d) {
 		var centreX = svgCentre.x + 150;
 		if (d.value <= 5) {
-				centreY = svgCentre.y + 100;
-			} else if (d.value <= 10) {
 				centreY = svgCentre.y + 75;
+			} else if (d.value <= 10) {
+				centreY = svgCentre.y + 50;
 			} else if (d.value <= 15) {
 				centreY = svgCentre.y + 35;
 			} else  if (d.value <= 20) {
 				centreY = svgCentre.y + 15;
 			} else  if (d.value <= 25) {
-				centreY = svgCentre.y -10;
+				centreY = svgCentre.y +5;
 			} else {
 				centreY = svgCentre.y;
 			}
