@@ -6,7 +6,7 @@ var force, node, data, maxVal;
 var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
-/*var partyCentres = { 
+var partyCentres = { 
     LRUN25FE: { x: w / 3, y: h / 3.3}, 
     LRUN25MA: {x: w / 3, y: h / 2.3}, 
     LRUN25TT: {x: w / 3	, y: h / 1.8}
@@ -15,7 +15,7 @@ var radius = d3.scale.sqrt().range([10, 20]);
 var entityCentres = { 
     2017-Q3: {x: w / 3.65, y: h / 2.3},
     2017-Q4: {x: w / 3.65, y: h / 1.8}
-  };*/
+  };
 
 
 var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
@@ -173,47 +173,31 @@ function moveToCentre(alpha) {
 }
 
 function moveToSexes(alpha) {
-	return function(d){
-		     var centreY; 
-		     var centreX; 
-                 if (d.party === 'LRUN25FE'){	
-			centreX = 250;
-			centreY = 350;
-
-		} else if (d.party==='LRUN25MA'){
-                        centreX = 450;
-			centreY = 300;
-
-		}  else if(d.party==='LRUN25TT'){
-			centreX = 200;
-			centreY = 600;
+	return function(d) {
+		var centreX = partyCentres[d.party].x + 50;
+		if (d.party==='LRUN25FE') {
+			centreX = 1200;
+		} else {
+			centreY = partyCentres[d.party].y;
 		}
-
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-
 };
+
 }
 
 function moveToQuarterlies(alpha) {
-	return function(d){
-		     var centreY; 
-		     var centreX; 
-                 if (d.entity ==='2017-Q3'){	
-			centreX = 250;
-			centreY = 350;
-
-		} else if (d.entity==='2017-Q4'){
-                        centreX = 450;
-			centreY = 300;
-
-		} 
-
+	return function(d) {
+		var centreY = entityCentres[d.entity].y;
+		if (d.entity === '2017-Q3') {
+			centreX = 1200;
+		} else {
+			centreX = entityCentres[d.entity].x;
+		}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-
 };
 }
 
