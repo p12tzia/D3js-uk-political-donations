@@ -184,7 +184,7 @@ function moveToSexes(alpha) {
                         centreX = 450;
 			centreY = 300;
 
-		}  else if{
+		}  else if(d.party=LRUN25TT){
 			centreX = 200;
 			centreY = 600;
 		}
