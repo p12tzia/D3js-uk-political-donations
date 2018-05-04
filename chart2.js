@@ -13,8 +13,8 @@ var partyCentres = {
   };
 
 var entityCentres = { 
-    Q3-2017: {x: w / 3.65, y: h / 2.3},
-    Q4-2017: {x: w / 3.65, y: h / 1.8}
+    Q32017: {x: w / 3.65, y: h / 2.3},
+    Q42017: {x: w / 3.65, y: h / 1.8}
   };
 
 
@@ -190,7 +190,7 @@ function moveToSexes(alpha) {
 function moveToQuarterlies(alpha) {
 	return function(d) {
 		var centreY = entityCentres[d.entity].y;
-		if (d.entity === 'Q3-2017') {
+		if (d.entity === 'Q32017') {
 			centreX = 1200;
 		} else {
 			centreX = entityCentres[d.entity].x;
