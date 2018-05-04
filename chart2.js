@@ -7,9 +7,9 @@ var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
 var partyCentres = { 
-    lrun25fe: { x: w / 3, y: h / 3.3}, 
-    lrun25ma: {x: w / 3, y: h / 2.3}, 
-    lrun25tt: {x: w / 3	, y: h / 1.8}
+    LRUN25FE: { x: w / 3, y: h / 3.3}, 
+    LRUN25MA: {x: w / 3, y: h / 2.3}, 
+    LRUN25TT: {x: w / 3	, y: h / 1.8}
   };
 
 /*var entityCentres = { 
