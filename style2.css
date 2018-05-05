@@ -109,3 +109,8 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     -ms-user-select: none;
     user-select: none;
 }
+/* Firefox: Get rid of the inner focus border */
+.pure-button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
