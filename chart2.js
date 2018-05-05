@@ -279,7 +279,7 @@ function mouseover(d, i) {
 	var period = d.periodLabel;
 	var offset = $("svg").offset();
 	
-        var speech = new SpeechSynthesisUtterance( "donator's name is "+ d.place +" and  the donation is " + amount );
+        var speech = new SpeechSynthesisUtterance( + d.place +" unemployment rate is " + amount );
         window.speechSynthesis.speak(speech);
 
 	// image url that want to check
@@ -299,7 +299,7 @@ function mouseover(d, i) {
 	
 	 							+ "<p> Target group: <b>" + group + "</b></p>"
 								+ "<p> Type of period: <b>" + period + "</b></p>"
-								+ "<p> Total value: <b>&#163;" + comma(amount) + "</b></p>";
+								+ "<p> Total value: <b>" + comma(amount) + "</b></p>";
 	
 	
 	mosie.classed("active", true);
