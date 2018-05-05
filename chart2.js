@@ -13,7 +13,7 @@ var groupCentres = {
   };
 
 
-var fill = d3.scale.ordinal().range(["#820010", "#D2A6C7", "#8CCCCA"]);
+var fill = d3.scale.ordinal().range(["#000000", "#C0C0C0", "#808080"]);
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
