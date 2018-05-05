@@ -29,8 +29,19 @@ li {
     left: 650px;
     width: 272px;
 }
-#sex-split {
+/*#sex-split {
     top: 550px;
     left: -600px;
     text-align: center;   
+}*/
+#value-scale {
+    opacity: 0.5;
+    font-size: 0.75em;
 }
+#a, #b, #c, #d, #e { left: 40px; }
+#a { top: 635px;}
+#b { top: 585px;}
+#c { top: 535px;}
+#d { top: 485px;}
+#e { top: 435px;}
+#f { top: 648px; left: 575px; }
