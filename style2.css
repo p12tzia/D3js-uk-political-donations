@@ -45,3 +45,25 @@ li {
 #d { top: 485px;}
 #e { top: 435px;}
 #f { top: 648px; left: 575px; }
+
+.zoom{
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    transform: scale(1.5);
+}
+circle {
+    stroke: rgba(238, 238, 238, 1);
+    stroke-width: 0.5;
+}
+circle.active {
+    stroke: rgba(17, 17, 17, 0.8);
+    stroke-width: 5;
+}
+
+.legend circle {
+    stroke: #aabbcc;
+    stroke-width: 1;
+    fill: none;
+}
