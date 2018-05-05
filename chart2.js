@@ -276,7 +276,7 @@ function mouseover(d, i) {
 	var amount = mosie.attr("amount");
 	var place = d.place;
 	var party = d.partyLabel;
-	var period = d.period;
+	var period = d.periodLabel;
 	var offset = $("svg").offset();
 	
         var speech = new SpeechSynthesisUtterance( "donator's name is "+ d.place +" and  the donation is " + amount );
