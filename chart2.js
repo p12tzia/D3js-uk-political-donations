@@ -252,7 +252,7 @@ function display(data) {
 				party: d.party,
 				partyLabel: d.partyname,
 				period: d.period,
-				periodLabel: d.periodname,
+				periodLabel: d.period,
 				color: d.color,
 				x: Math.random() * w,
 				y: -y
@@ -276,7 +276,7 @@ function mouseover(d, i) {
 	var amount = mosie.attr("amount");
 	var place = d.place;
 	var party = d.partyLabel;
-	var period = d.periodLabel;
+	var period = d.period;
 	var offset = $("svg").offset();
 	
         var speech = new SpeechSynthesisUtterance( "donator's name is "+ d.place +" and  the donation is " + amount );
