@@ -252,7 +252,7 @@ function display(data) {
 				group: d.group,
 				groupLabel: d.groupname,
 				period: d.period,
-				periodLabel: d.period,
+				periodLabel: d.periodname,
 				color: d.color,
 				x: Math.random() * w,
 				y: -y
@@ -279,7 +279,7 @@ function mouseover(d, i) {
 	var period = d.periodLabel;
 	var offset = $("svg").offset();
 	
-        var speech = new SpeechSynthesisUtterance( + d.place +" unemployment rate is " + amount );
+        var speech = new SpeechSynthesisUtterance( "The country"+ d.place +" has unemployment rate is " + amount );
         window.speechSynthesis.speak(speech);
 
 	// image url that want to check
@@ -295,7 +295,7 @@ function mouseover(d, i) {
 	
 
 	
-	var infoBox = "<p> Source: <b>" + place + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
+	var infoBox = "<p> Country: <b>" + place + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
 	
 	 							+ "<p> Target group: <b>" + group + "</b></p>"
 								+ "<p> Type of period: <b>" + period + "</b></p>"
