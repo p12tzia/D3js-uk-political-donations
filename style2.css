@@ -2,3 +2,16 @@ body {
     background-color: #E62B86;
     font-family:'Raleway', 'Open Sans', sans-serif;
 }
+p {
+    margin: 10px 0;
+}
+h1, h2, h3, h4, h5 {
+    margin: 10px 0 15px 0;
+}
+header, nav {
+    text-align: center;
+    min-width: 767px;
+}
+li {
+    display: inline;
+}
