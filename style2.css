@@ -21,3 +21,11 @@ li {
 #view-sex-type,#view-quarterly-type{
     display: none;
 }
+#initial-content,#view-quarterly-type {
+    left: 650px;
+    width: 400px;
+}
+#view-sex-type {
+    left: 650px;
+    width: 272px;
+}
