@@ -6,7 +6,7 @@ var force, node, data, maxVal;
 var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
-var partyCentres = { 
+var groupCentres = { 
     LRUN25FE: { x: w / 3, y: h / 3.3}, 
     LRUN25MA: {x: w / 3, y: h / 2.3}, 
     LRUN25TT: {x: w / 3	, y: h / 1.8}
@@ -63,16 +63,16 @@ function start() {
 	node = nodeGroup.selectAll("circle")
 		.data(nodes)
 	.enter().append("circle")
-		.attr("class", function(d) { return "node " + d.party; })
+		.attr("class", function(d) { return "node " + d.group; })
 		.attr("amount", function(d) { return d.value; })
 		.attr("place", function(d) { return d.place; })
 		.attr("period", function(d) { return d.period; })
-		.attr("party", function(d) { return d.party; })
+		.attr("group", function(d) { return d.group; })
 		// disabled because of slow Firefox SVG rendering
 		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
 		//.style("opacity", 0.9)
 		.attr("r", 0)
-		.style("fill", function(d) { return fill(d.party); })
+		.style("fill", function(d) { return fill(d.group); })
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout)
 	        .on("click", function(d){
@@ -169,11 +169,11 @@ function moveToCentre(alpha) {
 
 function moveToSexes(alpha) {
 	return function(d) {
-		var centreX = partyCentres[d.party].x + 50;
+		var centreX = groupCentres[d.group].x + 50;
 		//if (d.party==='LRUN25FE') {
 			//centreX = 1200;
 		//} else {
-			centreY = partyCentres[d.party].y;
+			centreY = groupCentres[d.group].y;
 		//}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -249,8 +249,8 @@ function display(data) {
 				radius: radiusScale(d.amount) / 6,
 				value: d.amount,
 				place: d.place,
-				party: d.party,
-				partyLabel: d.partyname,
+				group: d.group,
+				groupLabel: d.groupname,
 				period: d.period,
 				periodLabel: d.period,
 				color: d.color,
@@ -275,7 +275,7 @@ function mouseover(d, i) {
 	var mosie = d3.select(this);
 	var amount = mosie.attr("amount");
 	var place = d.place;
-	var party = d.partyLabel;
+	var group = d.groupLabel;
 	var period = d.periodLabel;
 	var offset = $("svg").offset();
 	
@@ -297,7 +297,7 @@ function mouseover(d, i) {
 	
 	var infoBox = "<p> Source: <b>" + place + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
 	
-	 							+ "<p> Recipient: <b>" + party + "</b></p>"
+	 							+ "<p> Target group: <b>" + group + "</b></p>"
 								+ "<p> Type of period: <b>" + period + "</b></p>"
 								+ "<p> Total value: <b>&#163;" + comma(amount) + "</b></p>";
 	
