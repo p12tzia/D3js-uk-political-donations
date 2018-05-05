@@ -67,3 +67,19 @@ circle.active {
     stroke-width: 1;
     fill: none;
 }
+.tooltip {
+    margin: 0;
+    padding: 5px;
+    line-height: 1.4;
+    display: none;
+    height: 125px;
+    width: 280px;
+    text-align: left;
+    border: 4px solid rgba(0, 0, 0, .8);
+    border-radius: 2px;
+    -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 1);
+    position: absolute;
+}
