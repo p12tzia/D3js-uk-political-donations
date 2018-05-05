@@ -1,4 +1,4 @@
-﻿"location","place","party","partyname","measure","Measure","frequency","Frequency","periodname","period","Unit Code","Unit","PowerCode Code","PowerCode","Reference Period Code","Reference Period","amount","Flag Codes","Flags"
+﻿"location","place","party","partyname","measure","Measure","frequency","Frequency","periodname","entity","Unit Code","Unit","PowerCode Code","PowerCode","Reference Period Code","Reference Period","amount","Flag Codes","Flags"
 "AUS","Australia","LRUN25FE"," Aged 25-54, Females","STSA","Level, rate or quantity series, s.a.","Q","Quarterly","2017-Q3","Q32017","PC","Percentage","0","Units",,,4.624345,,
 "AUS","Australia","LRUN25FE"," Aged 25-54, Females","STSA","Level, rate or quantity series, s.a.","Q","Quarterly","2017-Q4","Q42017","PC","Percentage","0","Units",,,4.597081,,
 "AUS","Australia","LRUN25MA"," Aged 25-54, Males","STSA","Level, rate or quantity series, s.a.","Q","Quarterly","2017-Q3","Q32017","PC","Percentage","0","Units",,,4.094939,,
