@@ -13,7 +13,7 @@ var groupCentres = {
   };
 
 
-var fill = d3.scale.ordinal().range(["#000000", "#C0C0C0", "#35002C"]);
+var fill = d3.scale.ordinal().range(["#000000", "#C0C0C0", "#EAE4EF"]);
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
@@ -162,8 +162,8 @@ function moveToCentre(alpha) {
 			}
 			
 
-		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
-		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
+		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 0.6;
+		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 0.6;
 	};
 }
 
@@ -299,7 +299,7 @@ function mouseover(d, i) {
 	
 	 							+ "<p> Target group: <b>" + group + "</b></p>"
 								+ "<p> Type of period: <b>" + period + "</b></p>"
-								+ "<p> Total value: <b>" + comma(amount) + "</b></p>";
+								+ "<p> Rate: <b>" + comma(amount) + "</b></p>";
 	
 	
 	mosie.classed("active", true);
