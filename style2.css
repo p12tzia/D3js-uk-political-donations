@@ -72,7 +72,7 @@ circle.active {
 }
 .tooltip {
     margin: 0;
-    padding: 30px;
+    padding: 10px;
     line-height: 1.4;
     display: none;
     height: 125px;
@@ -100,7 +100,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     display: inline-block;
     *display: inline;
     /*IE 6/7*/
-    zoom: 1;
+    zoom: 4;
     line-height: normal;
     white-space: nowrap;
     vertical-align: baseline;
