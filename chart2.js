@@ -283,7 +283,7 @@ function mouseover(d, i) {
         window.speechSynthesis.speak(speech);
 
 	// image url that want to check
-	var imageFile = "https://raw.githubusercontent.com/p12tzia/D3js-uk-political-donations/master/photos1" + place + ".ico";
+	var imageFile = "https://github.com/p12tzia/D3js-uk-political-donations/tree/master/photos1" + place + ".ico";
 
 	
 	
