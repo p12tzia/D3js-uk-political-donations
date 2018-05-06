@@ -100,7 +100,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     display: inline-block;
     *display: inline;
     /*IE 6/7*/
-    zoom: 1.4;
+    zoom: 1.2;
     line-height: normal;
     white-space: nowrap;
     vertical-align: baseline;
@@ -137,7 +137,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     /*IE9 + everything else*/
     background-color: #E6E6E6;
     text-decoration: none;
-    border: 7px solid rgba(230, 43, 134, 1);
+    border: 3px solid rgba(230, 43, 134, 1);
     border-radius: 25px;
     -webkit-font-smoothing: antialiased;
     /* Transitions */
