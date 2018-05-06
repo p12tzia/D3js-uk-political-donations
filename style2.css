@@ -71,9 +71,9 @@ circle.active {
     fill: none;
 }
 .tooltip {
-    margin: 10px;
+    margin: 5px;
     padding: 15px;
-    line-height: 0.8;
+    line-height: 1.4;
     display: none;
     height: 125px;
     width: 280px;
