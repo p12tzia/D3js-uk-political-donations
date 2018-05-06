@@ -78,7 +78,7 @@ circle.active {
     height: 125px;
     width: 280px;
     text-align: left;
-    border: 4px solid rgba(0, 0, 0, .8);
+    border: 4px solid rgba(230, 43, 134, 1);
     border-radius: 20px;
     -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
     -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
