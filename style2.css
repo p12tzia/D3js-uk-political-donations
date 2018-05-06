@@ -8,12 +8,16 @@ p {
 h1, h2, h3, h4, h5 {
     margin: 10px 0 15px 0;
 }
-header {
+header, nav {
     text-align: center;
     
 }
-nav{
-    text-align:center;
+ nav {
+    left:200px;
+    
+}
+header{
+    text-decoration: underline;
 }
 li {
     display: inline;
