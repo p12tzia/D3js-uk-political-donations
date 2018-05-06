@@ -8,12 +8,12 @@ p {
 h1, h2, h3, h4, h5 {
     margin: 10px 0 15px 0;
 }
-header, nav {
+header {
     text-align: center;
     
 }
  nav {
-    left:400px;
+    left:200px;
     
 }
 header{
