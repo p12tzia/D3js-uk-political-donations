@@ -162,8 +162,8 @@ function moveToCentre(alpha) {
 			}
 			
 
-		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 0.6;
-		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 0.6;
+		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 0.9;
+		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 0.9;
 	};
 }
 
