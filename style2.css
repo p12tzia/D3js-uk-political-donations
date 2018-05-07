@@ -54,6 +54,20 @@ a:link {
 #e { top: 435px;}
 #f { top: 648px; left: 575px; }
 
+#females, #males, #all { padding: 10px; }
+#females {
+    background: rgba(0, 0, 0, 1);
+    top: 110px;
+}
+#males {
+    background: rgba(192, 192, 192, 1);
+    top: 330px;
+}
+#all{
+    background: rgba(234, 228, 239, 1);
+    top: 550px;
+}
+
 .zoom{
     transition: transform .2s;
 }
