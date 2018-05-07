@@ -10,12 +10,12 @@ h1, h2, h3, h4, h5 {
 }
 header,nav {
     text-align: center;
-    
 }
-
 header{
     text-decoration: underline;
-    text-shadow: 3px 2px rgba(230, 43, 134, 1);
+}
+nav{
+    width:600px;
 }
 li {
     display: inline;
