@@ -26,7 +26,7 @@ li {
 a:link {
     color:rgba(230, 43, 134, 1) ;
 }
-#initial-content, #a, #b, #c, #d, #e,#view-sex-type,#view-quarterly-type{
+#initial-content, #a, #b, #c, #d, #e,#view-sex-type,#view-quarterly-type,#females, #males, #all, #third, #fourth{
  position: absolute; 
 }
 #view-sex-type,#view-quarterly-type{
@@ -53,7 +53,7 @@ a:link {
 #e { top: 435px;}
 #f { top: 648px; left: 575px; }
 
-#females, #males, #all { padding: 20px;}
+#females, #males, #all { padding: 10px;}
 #females {
     background: rgba(194, 194, 194, 1);
     top: 110px;
