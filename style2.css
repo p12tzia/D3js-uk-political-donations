@@ -20,6 +20,9 @@ nav{
 li {
     display: inline;
 }
+a:link {
+    color:rgba(230, 43, 134, 1) ;
+}
 #initial-content, #a, #b, #c, #d, #e,#view-sex-type,#view-quarterly-type,#sex-split{
  position: absolute; 
 }
