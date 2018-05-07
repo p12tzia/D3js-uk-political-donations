@@ -23,7 +23,7 @@ li {
 a:link {
     color:rgba(230, 43, 134, 1) ;
 }
-#initial-content, #a, #b, #c, #d, #e,#view-sex-type,#view-quarterly-type,#sex-split{
+#initial-content, #a, #b, #c, #d, #e,#view-sex-type,#view-quarterly-type{
  position: absolute; 
 }
 #view-sex-type,#view-quarterly-type{
@@ -37,11 +37,7 @@ a:link {
     left: 650px;
     width: 272px;
 }
-/*#sex-split {
-    top: 550px;
-    left: -600px;
-    text-align: center;   
-}*/
+
 #value-scale {
     opacity: 0.5;
     font-size: 0.75em;
@@ -54,7 +50,7 @@ a:link {
 #e { top: 435px;}
 #f { top: 648px; left: 575px; }
 
-#females, #males, #all { padding: 10px; }
+#females, #males, #all { padding: 10px; opacity: 0.5; }
 #females {
     background: rgba(0, 0, 0, 1);
     top: 110px;
