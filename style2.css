@@ -55,15 +55,15 @@ a:link {
 
 #females, #males, #all { padding: 10px;}
 #females {
-    background: rgba(194, 194, 194, 1);
+    background: rgba(172, 172, 172, 0.5);
     top: 110px;
 }
 #males {
-    background: rgba(192, 192, 192, 1);
+    background: rgba(192, 192, 192, 0.5);
     top: 330px;
 }
 #all{
-    background: rgba(234, 228, 239, 1);
+    background: rgba(234, 228, 239, 0.5);
     top: 550px;
 }
 
