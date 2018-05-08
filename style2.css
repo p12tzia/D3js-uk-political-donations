@@ -30,7 +30,7 @@ a:link {
  position: absolute; 
 }
 #view-sex-type,#view-quarterly-type{
-    display: none;
+    display: inline;
 }
 #initial-content,#view-quarterly-type {
     left: 650px;
