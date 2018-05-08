@@ -146,9 +146,9 @@ function all(e) {
 
 function moveToCentre(alpha) {
 	return function(d) {
-		var centreX = svgCentre.x + 50;
+		var centreX = svgCentre.x + 80;
 		if (d.value <= 5) {
-				centreY = svgCentre.y + 100;
+				centreY = svgCentre.y + 150;
 			} else if (d.value <= 10) {
 				centreY = svgCentre.y + 75;
 			} else if (d.value <= 15) {
