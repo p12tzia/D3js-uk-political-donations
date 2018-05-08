@@ -156,7 +156,7 @@ function moveToCentre(alpha) {
 			} else  if (d.value <= 20) {
 				centreY = svgCentre.y + 65;
 			} else  if (d.value <= 25) {
-				centreY = svgCentre.y -40;
+				centreY = svgCentre.y +40;
 			} else {
 				centreY = svgCentre.y;
 			}
@@ -187,11 +187,11 @@ function moveToQuarterlies(alpha) {
 		     var centreY; 
 		     var centreX; 
                  if (d.period === 'Q32017'){	
-			centreX = 500;
+			centreX = 470;
 			centreY = 250;
 
 		} else if(d.period ==='Q42017'){
-                        centreX = 800;
+                        centreX = 750;
 			centreY = 250;
 
 		}
