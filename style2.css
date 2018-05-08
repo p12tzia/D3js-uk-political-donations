@@ -68,9 +68,11 @@ a:link {
 }
 #third{
     right:700px;
+     width: 300px;
 }
 #fourth{
     right:200px;
+    width: 300px;
 }
 
 .zoom{
