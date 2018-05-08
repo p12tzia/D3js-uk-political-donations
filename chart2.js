@@ -156,7 +156,7 @@ function moveToCentre(alpha) {
 			} else  if (d.value <= 20) {
 				centreY = svgCentre.y + 65;
 			} else  if (d.value <= 25) {
-				centreY = svgCentre.y +40;
+				centreY = svgCentre.y -25;
 			} else {
 				centreY = svgCentre.y;
 			}
