@@ -47,11 +47,10 @@ a:link {
 }
 #a, #b, #c, #d, #e { left: 40px; }
 #a { top: 635px;}
-#b { top: 585px;}
-#c { top: 535px;}
-#d { top: 485px;}
-#e { top: 435px;}
-#f { top: 648px; left: 575px; }
+#b { top: 385px;}
+#c { top: 335px;}
+#d { top: 285px;}
+#e { top: 235px;}
 
 #females, #males, #all { padding: 10px;}
 #females {
