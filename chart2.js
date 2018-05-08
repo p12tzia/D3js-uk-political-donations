@@ -246,7 +246,7 @@ function display(data) {
 	data.forEach(function(d, i) {
 		var y = radiusScale(d.amount);
 		var node = {
-				radius: radiusScale(d.amount) / 7,
+				radius: radiusScale(d.amount) / 5,
 				value: d.amount,
 				place: d.place,
 				group: d.group,
