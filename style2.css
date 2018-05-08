@@ -78,7 +78,7 @@ a:link {
 }
 .zoom{
     transition: transform .2s;
-    padding: 5px;
+    padding: 2px;
     background: rgba(147, 169, 213, 1);
 }
 
