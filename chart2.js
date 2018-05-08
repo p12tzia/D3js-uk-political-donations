@@ -170,11 +170,9 @@ function moveToCentre(alpha) {
 function moveToSexes(alpha) {
 	return function(d) {
 		var centreX = groupCentres[d.group].x + 50;
-		//if (d.party==='LRUN25FE') {
-			//centreX = 1200;
-		//} else {
-			centreY = groupCentres[d.group].y;
-		//}
+	         
+	        var centreY = groupCentres[d.group].y;
+		
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
@@ -265,7 +263,7 @@ function display(data) {
 
 	force = d3.layout.force()
 		.nodes(nodes)
-		//.size([w, h]);
+		.size([w, h]);
 
 	return start();
 }
@@ -279,7 +277,7 @@ function mouseover(d, i) {
 	var period = d.periodLabel;
 	var offset = $("svg").offset();
 	
-        var speech = new SpeechSynthesisUtterance( "The country"+ d.place +" has unemployment rate is " + amount );
+        var speech = new SpeechSynthesisUtterance(  d.place +" has unemployment rate" + amount );
         window.speechSynthesis.speak(speech);
 
 	// image url that want to check
