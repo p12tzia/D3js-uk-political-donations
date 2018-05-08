@@ -47,7 +47,7 @@ a:link {
 }
 #a, #b, #c, #d, #e { left: 40px; }
 #a { top: 635px;}
-#b { top: 335px;}
+#b { top: 435px;}
 #c { top: 285px;}
 #d { top: 235px;}
 #e { top: 185px;}
@@ -68,6 +68,7 @@ a:link {
 #third{
     right:550px;
     width: 250px;
+    bottom:50px;
     
 }
 #fourth{
