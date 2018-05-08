@@ -69,6 +69,7 @@ a:link {
 
 .zoom{
     transition: transform .2s;
+    padding: 10px;
 }
 
 .zoom:hover {
