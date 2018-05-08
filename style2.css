@@ -30,7 +30,7 @@ a:link {
  position: absolute; 
 }
 #view-sex-type,#view-quarterly-type{
-    display: inline;
+    display: none;
 }
 #initial-content,#view-quarterly-type {
     left: 650px;
@@ -68,6 +68,9 @@ a:link {
 }
 #third{
     right:700px;
+}
+#fourth{
+    right:200px;
 }
 
 .zoom{
