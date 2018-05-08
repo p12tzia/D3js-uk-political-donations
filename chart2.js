@@ -152,11 +152,11 @@ function moveToCentre(alpha) {
 			} else if (d.value <= 10) {
 				centreY = svgCentre.y + 125;
 			} else if (d.value <= 15) {
-				centreY = svgCentre.y + 100;
+				centreY = svgCentre.y + 90;
 			} else  if (d.value <= 20) {
-				centreY = svgCentre.y + 35;
+				centreY = svgCentre.y + 55;
 			} else  if (d.value <= 25) {
-				centreY = svgCentre.y -15;
+				centreY = svgCentre.y -25;
 			} else {
 				centreY = svgCentre.y;
 			}
