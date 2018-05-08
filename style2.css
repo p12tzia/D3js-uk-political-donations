@@ -69,10 +69,12 @@ a:link {
 #third{
     right:550px;
     width: 250px;
+    background:rgba(147, 169, 213, 0.2);
 }
 #fourth{
     /*right:200px;*/
     width: 250px;
+    background:rgba(147, 169, 213, 0.2);
 }
 
 .zoom{
