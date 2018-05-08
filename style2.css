@@ -66,15 +66,15 @@ a:link {
     top: 550px;
 }
 #third{
-    right:450px;
+    right:480px;
     width: 250px;
-    bottom:1px;
+    bottom:0.2px;
     
 }
 #fourth{
-    left:100px;
+    left:70px;
     width: 250px;
-    bottom:1px;
+    bottom:0.2px;
 }
 .zoom{
     transition: transform .2s;
