@@ -94,12 +94,12 @@ circle {
 }
 circle.active {
     stroke: rgba(17, 17, 17, 0.8);
-    stroke-width: 5;
+    stroke-width: 10;
 }
 
 .legend circle {
     stroke: #aabbcc;
-    stroke-width: 1;
+    stroke-width: 3;
     fill: none;
 }
 .tooltip {
