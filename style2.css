@@ -68,13 +68,13 @@ a:link {
 #third{
     right:550px;
     width: 250px;
-    bottom:10px;
+    bottom:4px;
     
 }
 #fourth{
     /*right:200px;*/
     width: 250px;
-    bottom:10px;
+    bottom:4px;
 }
 .zoom{
     transition: transform .2s;
