@@ -70,6 +70,7 @@ a:link {
 .zoom{
     transition: transform .2s;
     padding: 10px;
+    background: rgba(147, 169, 213, 1);
 }
 
 .zoom:hover {
