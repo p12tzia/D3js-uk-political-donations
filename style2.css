@@ -99,7 +99,7 @@ circle.active {
 
 .legend circle {
     stroke: #aabbcc;
-    stroke-width: 3;
+    stroke-width: 1;
     fill: none;
 }
 .tooltip {
