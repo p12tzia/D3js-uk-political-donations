@@ -152,11 +152,11 @@ function moveToCentre(alpha) {
 			} else if (d.value <= 10) {
 				centreY = svgCentre.y + 125;
 			} else if (d.value <= 15) {
-				centreY = svgCentre.y + 90;
+				centreY = svgCentre.y + 95;
 			} else  if (d.value <= 20) {
-				centreY = svgCentre.y + 55;
+				centreY = svgCentre.y + 65;
 			} else  if (d.value <= 25) {
-				centreY = svgCentre.y -25;
+				centreY = svgCentre.y -30;
 			} else {
 				centreY = svgCentre.y;
 			}
@@ -187,11 +187,11 @@ function moveToQuarterlies(alpha) {
 		     var centreY; 
 		     var centreX; 
                  if (d.period === 'Q32017'){	
-			centreX = 400;
+			centreX = 600;
 			centreY = 250;
 
 		} else if(d.period ==='Q42017'){
-                        centreX = 700;
+                        centreX = 900;
 			centreY = 250;
 
 		}
