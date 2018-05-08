@@ -119,6 +119,9 @@ circle.active {
 .tooltip p, h3 {
     margin: 0.2em;
 }
+.svgCentre{
+    width: 500px;
+}
 /*!
 Pure v0.2.1
 Copyright 2013 Yahoo! Inc. All rights reserved.
