@@ -67,12 +67,12 @@ a:link {
     top: 550px;
 }
 #third{
-    right:700px;
-     width: 300px;
+    right:450px;
+    width: 200px;
 }
 #fourth{
-    right:200px;
-    width: 300px;
+    /*right:200px;*/
+    width: 200px;
 }
 
 .zoom{
